@@ -13,22 +13,26 @@
       <Button fx:id="btnOpenDir" layoutX="216.0" layoutY="21.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="89.0" text="OPEN">
          <font>
             <Font name="System Bold" size="14.0" />
-         </font></Button>
+         </font>
+      </Button>
       <ListView fx:id="listPath" layoutX="319.0" layoutY="6.0" onMouseClicked="#removeItem" prefHeight="308.0" prefWidth="314.0" />
-      <TextArea fx:id="console" layoutX="3.0" layoutY="321.0" prefHeight="276.0" prefWidth="632.0" />
-      <Button fx:id="btnAddCommand" layoutX="14.0" layoutY="23.0" mnemonicParsing="false" text="ADD COMAND">
+      <TextArea fx:id="console" editable="false" layoutX="3.0" layoutY="321.0" prefHeight="276.0" prefWidth="632.0">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></TextArea>
+      <Button fx:id="btnAddCommand" defaultButton="true" layoutX="14.0" layoutY="23.0" mnemonicParsing="false" text="ADD COMAND">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <ListView fx:id="listCommand" editable="true" layoutX="14.0" layoutY="110.0" prefHeight="135.0" prefWidth="203.0" />
+      <ListView fx:id="listCommand" layoutX="14.0" layoutY="110.0" prefHeight="135.0" prefWidth="203.0" />
       <Button fx:id="btnStart" layoutX="14.0" layoutY="268.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="162.0" text="START">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
       <TextField fx:id="inputCommand" layoutX="14.0" layoutY="67.0" prefHeight="28.0" prefWidth="203.0" />
-      <Label fx:id="lblErro" layoutX="14.0" layoutY="250.0" prefHeight="18.0" prefWidth="302.0" text="Label" textFill="#b21313" underline="true">
+      <Label fx:id="lblErro" layoutX="14.0" layoutY="250.0" prefHeight="18.0" prefWidth="302.0" textFill="#b21313" underline="true">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

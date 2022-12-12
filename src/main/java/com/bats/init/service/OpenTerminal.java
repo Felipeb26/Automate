@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.security.Key;
 
 @Service
 public class OpenTerminal {
