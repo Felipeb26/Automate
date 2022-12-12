@@ -121,6 +121,7 @@ public class MainController implements Initializable {
                     }
                 }
                 format.resetCommandList(listCommand);
+                lblErro.setText("finalizado todos comandos!");
 //                Background background = new Background(listPath, listCommand, console, ps);
 //                Platform.runLater(() ->{
 //                    th = new Thread(background);
