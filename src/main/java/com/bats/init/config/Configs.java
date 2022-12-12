@@ -10,6 +10,7 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,12 +38,10 @@ public class Configs {
             final File path = directoryChooser.showDialog(stage);
             if (nonNull(path)) {
                 var folder = path.getAbsolutePath();
-                List<Path> subfolder = Files.walk(Path.of(folder), 1)
-                        .filter(Files::isDirectory)
-                        .collect(Collectors.toList());
+                List<Path> subfolder = Files.walk(Path.of(folder), 1).filter(Files::isDirectory).collect(Collectors.toList());
                 subfolder.parallelStream().distinct().map(this::getPath).filter(this::just).forEach(paths::add);
             }
-            return paths;
+            return paths.stream().sorted(Comparator.comparing(String::length)).collect(Collectors.toList());
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;
@@ -67,7 +66,7 @@ public class Configs {
         place = place.substring(num + 1);
         if (!place.startsWith(".")) {
             return path.toString();
-        }else{
+        } else {
             return "";
         }
     }

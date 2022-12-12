@@ -119,7 +119,7 @@ public class MainController implements Initializable {
                                 console.appendText(text);
                             }
                         }
-                        console.appendText("finalizado comando: " + exec+"\n");
+                        console.appendText("finalizado comando: " + exec+"\n\n");
                     }
                 }
                 format.resetCommandList(listCommand);
