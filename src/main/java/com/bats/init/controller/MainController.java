@@ -110,6 +110,7 @@ public class MainController implements Initializable {
                     var command = format.toListOfCommands(listCommand);
                     for (var exec : command) {
                         var result = execute.execs(exec, value, ps);
+                        console.appendText("Executando comando: " + exec+"\n");
                         if (result.isEmpty()) {
                             System.out.println(result);
                         } else {
@@ -118,10 +119,11 @@ public class MainController implements Initializable {
                                 console.appendText(text);
                             }
                         }
+                        console.appendText("finalizado comando: " + exec+"\n");
                     }
                 }
                 format.resetCommandList(listCommand);
-                lblErro.setText("finalizado todos comandos!");
+                lblErro.setText("Finalizado todos comandos!");
 //                Background background = new Background(listPath, listCommand, console, ps);
 //                Platform.runLater(() ->{
 //                    th = new Thread(background);
