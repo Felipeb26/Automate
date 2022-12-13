@@ -7,7 +7,6 @@ import com.bats.init.service.Background;
 import com.bats.init.service.Console;
 import com.bats.init.service.ExecuteOnTerminal;
 import com.bats.init.service.OpenTerminal;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -105,30 +104,35 @@ public class MainController implements Initializable {
                 System.out.println(ps);
                 System.err.println(ps);
                 format.resetConsole(console);
+
                 var list = format.toList(listPath);
-                for (String value : list) {
-                    var command = format.toListOfCommands(listCommand);
-                    for (var exec : command) {
-                        var result = execute.execs(exec, value, ps);
-                        console.appendText("Executando comando: " + exec+"\n");
-                        if (result.isEmpty()) {
-                            System.out.println(result);
-                        } else {
-                            for (var text : result) {
-                                text = text + "\n";
-                                console.appendText(text);
-                            }
-                        }
-                        console.appendText("finalizado comando: " + exec+"\n\n");
-                    }
-                }
-                format.resetCommandList(listCommand);
-                lblErro.setText("Finalizado todos comandos!");
-//                Background background = new Background(listPath, listCommand, console, ps);
-//                Platform.runLater(() ->{
-//                    th = new Thread(background);
-//                    th.start();
-//                });
+//                for (String value : list) {
+//                    var command = format.toListOfCommands(listCommand);
+//                    for (var exec : command) {
+//                        var result = execute.execs(exec, value, ps);
+////                        var num = value.lastIndexOf("/");
+////                        if (num == -1) {
+////                            num = value.lastIndexOf("\\");
+////                        }
+////                        value = value.substring(num);
+//                        String message = String.format("Executando comando: %s\t na Pasta: %s", exec, value);
+//                        console.appendText(message);
+//                        if (result.isEmpty()) {
+//                            System.out.println(result);
+//                        } else {
+//                            for (var text : result) {
+//                                text = text + "\n";
+//                                console.appendText(text);
+//                            }
+//                        }
+//                        console.appendText(message.replace("Executando", "Finalizando\n\n"));
+//                    }
+//                }
+//                format.resetCommandList(listCommand);
+//                lblErro.setText("Finalizado todos comandos!");
+//
+                Background background = new Background(listPath, listCommand, console, ps, lblErro);
+                new Thread(background).start();
             } catch (Exception e) {
                 Exceptions.ToText(e, ps);
                 System.out.println(e.getMessage());
