@@ -21,8 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import static java.util.Objects.nonNull;
-
 @Component
 public class MainController implements Initializable {
 
@@ -146,7 +144,6 @@ public class MainController implements Initializable {
                 }
                 format.resetCommandList(listCommand);
                 lblErro.setText("Finalizado todos comandos!");
-//
 //                Background background = new Background(listPath, listCommand, console, ps, lblErro);
 //                new Thread(background).start();
             } catch (Exception e) {
