@@ -8,9 +8,11 @@ import com.bats.init.service.ExecuteOnTerminal;
 import com.bats.init.service.OpenTerminal;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.DirectoryChooser;
+import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
 
 import java.io.PrintStream;
@@ -34,7 +36,7 @@ public class MainController implements Initializable {
     @FXML
     private static DirectoryChooser directoryChooser;
     @FXML
-    private Button btnOpenDir, btnAddCommand, btnStart;
+    private Button btnOpenDir, btnAddCommand, btnStart, btnMinimize, btnClose, btnFull;
     @FXML
     private ListView<String> listPath, listCommand, directoryName;
     @FXML
@@ -44,7 +46,10 @@ public class MainController implements Initializable {
     @FXML
     private TextArea console;
     private PrintStream ps;
-    private Thread th;
+    private Stage stage;
+    private static double yoffset, xoffset;
+    @FXML
+    private ToolBar toolBar;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -59,7 +64,7 @@ public class MainController implements Initializable {
     private void getPath() {
         directoryChooser = new DirectoryChooser();
         btnOpenDir.setOnAction(Event -> {
-            format.checkList(listPath,directoryName);
+            format.checkList(listPath, directoryName);
             config.configureFileChooser(directoryChooser);
             paths = config.showSubFolders(directoryChooser);
             setList();
@@ -150,4 +155,37 @@ public class MainController implements Initializable {
             }
         });
     }
+
+    @FXML
+    public void onPanePressed(MouseEvent me) {
+        stage = (Stage) ((Node) me.getSource()).getScene().getWindow();
+        xoffset = stage.getX() - me.getScreenX();
+        yoffset = stage.getY() - me.getScreenY();
+    }
+
+    @FXML
+    public void onPaneDrag(MouseEvent me) {
+        stage = (Stage) ((Node) me.getSource()).getScene().getWindow();
+        stage.setX(xoffset + me.getScreenX());
+        stage.setY(yoffset + me.getScreenY());
+    }
+
+    @FXML
+    public void closeStage(MouseEvent me) {
+        stage = (Stage) ((Node) me.getSource()).getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    public void miniStage(MouseEvent me) {
+        stage = (Stage) ((Node) me.getSource()).getScene().getWindow();
+        stage.setIconified(!stage.isIconified());
+    }
+
+    @FXML
+    public void fullStage(MouseEvent me) {
+        stage = (Stage) ((Node) me.getSource()).getScene().getWindow();
+        stage.setFullScreen(!stage.isFullScreen());
+    }
+
 }

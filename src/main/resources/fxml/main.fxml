@@ -6,125 +6,164 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="700.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bats.init.controller.MainController">
-   <top>
-      <HBox BorderPane.alignment="CENTER">
-         <children>
-            <ToolBar nodeOrientation="LEFT_TO_RIGHT" HBox.hgrow="ALWAYS">
-              <items>
-                  <Button fx:id="btnStart" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="START">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="btnAddCommand" defaultButton="true" mnemonicParsing="false" prefHeight="50.0" text="ADD COMAND">
-                     <font>
+<BorderPane prefHeight="700.0" prefWidth="650.0" style="-fx-border-color: black; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bats.init.controller.MainController">
+    <top>
+        <HBox onMouseDragged="#onPaneDrag" onMousePressed="#onPanePressed">
+            <children>
+                <Button fx:id="btnStart" mnemonicParsing="false" prefHeight="16.0" prefWidth="100.0" text="START" HBox.hgrow="ALWAYS">
+                    <font>
                         <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="btnOpenDir" mnemonicParsing="false" prefHeight="50.0" prefWidth="89.0" text="FILES">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Button>
-              </items>
-            </ToolBar>
-         </children>
-         <BorderPane.margin>
-            <Insets bottom="5.0" />
-         </BorderPane.margin>
-      </HBox>
-   </top>
-   <left>
-      <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
-         <children>
-            <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
-               <children>
-                  <Label fx:id="lblErro" prefHeight="18.0" prefWidth="248.0" textFill="#b21313" underline="true" VBox.vgrow="ALWAYS">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                     <padding>
-                        <Insets bottom="5.0" />
-                     </padding>
-                     <VBox.margin>
-                        <Insets bottom="5.0" top="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TextField fx:id="inputCommand" VBox.vgrow="ALWAYS">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </TextField>
-                  <ListView fx:id="listCommand" editable="true" VBox.vgrow="ALWAYS">
-                     <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </ListView>
-               </children>
-               <padding>
+                    </font>
+               <HBox.margin>
                   <Insets left="5.0" right="5.0" />
-               </padding>
-            </VBox>
-         </children>
-      </HBox>
-   </left>
-   <right>
-      <VBox BorderPane.alignment="CENTER">
-         <children>
-            <Label fx:id="lbllistQuant" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="diretorios encontrados" textAlignment="RIGHT" underline="true" VBox.vgrow="ALWAYS">
+               </HBox.margin>
+                </Button>
+                <Button fx:id="btnAddCommand" defaultButton="true" mnemonicParsing="false" prefHeight="27.0" prefWidth="118.0" text="ADD COMAND" HBox.hgrow="ALWAYS">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+               <HBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </HBox.margin>
+                </Button>
+                <Button fx:id="btnOpenDir" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" text="FILES" HBox.hgrow="ALWAYS">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+               <HBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </HBox.margin>
+                </Button>
+                <HBox maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                <Button fx:id="btnMinimize" mnemonicParsing="false" onMouseClicked="#miniStage" prefHeight="6.0" prefWidth="46.0" text="− " HBox.hgrow="ALWAYS">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
-            </Label>
-            <HBox prefWidth="200.0">
-               <children>
-                  <Label alignment="CENTER" prefHeight="16.0" prefWidth="468.0" text="PASTA" underline="true" HBox.hgrow="ALWAYS">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="16.0" prefWidth="464.0" text="CAMINHO" underline="true" HBox.hgrow="ALWAYS">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox VBox.vgrow="ALWAYS">
-               <children>
-                  <ListView fx:id="directoryName" onMouseClicked="#removeItem" HBox.hgrow="ALWAYS" />
-                  <ListView fx:id="listPath" onMouseClicked="#removeItem" HBox.hgrow="ALWAYS" />
-               </children>
-            </HBox>
-         </children>
-      </VBox>
-   </right>
-   <bottom>
-      <HBox prefHeight="250.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <TextArea fx:id="console" editable="false" prefHeight="153.0" prefWidth="500.0" HBox.hgrow="ALWAYS">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
+               <padding>
+                  <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+               </padding>
                <HBox.margin>
-                  <Insets />
+                  <Insets left="5.0" right="5.0" />
+               </HBox.margin></Button>
+                <Button fx:id="btnFull" mnemonicParsing="false" onMouseClicked="#fullStage" prefHeight="24.0" prefWidth="35.0" text="⃞" HBox.hgrow="ALWAYS">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <padding>
+                  <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </HBox.margin></Button>
+                <Button fx:id="bntClose" mnemonicParsing="false" onMouseClicked="#closeStage" prefHeight="4.0" prefWidth="30.0" text="X" HBox.hgrow="ALWAYS">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+               <padding>
+                  <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets left="5.0" right="5.0" />
                </HBox.margin>
-            </TextArea>
-         </children>
-         <padding>
-            <Insets left="5.0" right="5.0" top="10.0" />
-         </padding>
-      </HBox>
-   </bottom>
-   <center>
-      <AnchorPane BorderPane.alignment="CENTER" />
-   </center>
+                </Button>
+            </children>
+            <BorderPane.margin>
+                <Insets bottom="5.0" />
+            </BorderPane.margin>
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </padding>
+        </HBox>
+    </top>
+    <left>
+        <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
+            <children>
+                <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+                    <children>
+                        <Label fx:id="lblErro" prefHeight="18.0" prefWidth="248.0" textFill="#b21313" underline="true" VBox.vgrow="ALWAYS">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                            <padding>
+                                <Insets bottom="5.0" />
+                            </padding>
+                            <VBox.margin>
+                                <Insets bottom="5.0" top="10.0" />
+                            </VBox.margin>
+                        </Label>
+                        <TextField fx:id="inputCommand" VBox.vgrow="ALWAYS">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </TextField>
+                        <ListView fx:id="listCommand" editable="true" VBox.vgrow="ALWAYS">
+                            <VBox.margin>
+                                <Insets top="5.0" />
+                            </VBox.margin>
+                        </ListView>
+                    </children>
+                    <padding>
+                        <Insets left="5.0" right="5.0" />
+                    </padding>
+                </VBox>
+            </children>
+        </HBox>
+    </left>
+    <right>
+        <VBox BorderPane.alignment="CENTER">
+            <children>
+                <Label fx:id="lbllistQuant" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="diretorios encontrados" textAlignment="RIGHT" underline="true" VBox.vgrow="ALWAYS">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <HBox prefWidth="200.0">
+                    <children>
+                        <Label alignment="CENTER" prefHeight="16.0" prefWidth="468.0" text="PASTA" underline="true" HBox.hgrow="ALWAYS">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="16.0" prefWidth="464.0" text="CAMINHO" underline="true" HBox.hgrow="ALWAYS">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+                <HBox VBox.vgrow="ALWAYS">
+                    <children>
+                        <ListView fx:id="directoryName" onMouseClicked="#removeItem" HBox.hgrow="ALWAYS" />
+                        <ListView fx:id="listPath" onMouseClicked="#removeItem" HBox.hgrow="ALWAYS" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </right>
+    <bottom>
+        <HBox prefHeight="250.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <children>
+                <TextArea fx:id="console" editable="false" prefHeight="153.0" prefWidth="500.0" HBox.hgrow="ALWAYS">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                    <HBox.margin>
+                        <Insets />
+                    </HBox.margin>
+                </TextArea>
+            </children>
+            <padding>
+                <Insets left="5.0" right="5.0" top="10.0" />
+            </padding>
+        </HBox>
+    </bottom>
+    <center>
+        <AnchorPane BorderPane.alignment="CENTER" />
+    </center>
 </BorderPane>

@@ -84,17 +84,6 @@
             <artifactId>webdrivermanager</artifactId>
             <version>5.1.0</version>
         </dependency>
-        <dependency>
-            <groupId>de.jensd</groupId>
-            <artifactId>fontawesomefx</artifactId>
-            <version>8.9</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.victorlaerte</groupId>
-            <artifactId>jfx-asynctask</artifactId>
-            <version>1.0.1</version>
-        </dependency>
 
     </dependencies>
 

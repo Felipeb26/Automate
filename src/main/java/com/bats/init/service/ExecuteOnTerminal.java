@@ -49,6 +49,7 @@ public class ExecuteOnTerminal {
             List<String> strings = new ArrayList<>();
             String lines;
             path = path + "/";
+            command = String.format("/bin/sh -c %s", command);
             Process p = Runtime.getRuntime().exec(command, null, new File(path));
             BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
             while ((lines = reader.readLine()) != null) {

@@ -1,7 +1,6 @@
 package com.bats.init.config;
 
 import lombok.experimental.UtilityClass;
-import org.springframework.stereotype.Service;
 
 import java.io.PrintStream;
 

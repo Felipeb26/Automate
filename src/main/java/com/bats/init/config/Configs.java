@@ -39,7 +39,7 @@ public class Configs {
             if (nonNull(path)) {
                 var folder = path.getAbsolutePath();
                 List<Path> subfolder = Files.walk(Path.of(folder), 1).filter(Files::isDirectory).collect(Collectors.toList());
-                subfolder.parallelStream().distinct().map(this::getPath).filter(this::just).forEach(paths::add);
+                subfolder.stream().distinct().map(this::getPath).filter(this::just).forEach(paths::add);
             }
             return paths.stream().sorted(Comparator.comparing(String::length)).collect(Collectors.toList());
         } catch (Exception e) {

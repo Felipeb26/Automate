@@ -6,7 +6,9 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -41,12 +43,18 @@ public class JavaFxApplication extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent parent = FXMLLoader.load(requireNonNull(JavaFxApplication.class.getResource("/fxml/main.fxml")));
-        stage.setScene(new Scene(parent));
+        Parent root = FXMLLoader.load(requireNonNull(JavaFxApplication.class.getResource("/fxml/main.fxml")));
+        Scene scene = new Scene(root);
+
+        scene.setFill(Color.TRANSPARENT);
+        stage.initStyle(StageStyle.TRANSPARENT);
+        scene.getStylesheets().add("css/index.css");
+
+        stage.setScene(scene);
+        root.setOpacity(0.5);
         stage.setMinHeight(700);
         stage.setMinWidth(500);
-//        stage.setResizable(false);
-        stage.setTitle("AUTOMATE");
         stage.show();
     }
+
 }
