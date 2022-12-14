@@ -59,6 +59,7 @@ public class MainController implements Initializable {
     private void getPath() {
         directoryChooser = new DirectoryChooser();
         btnOpenDir.setOnAction(Event -> {
+            format.checkList(listPath,directoryName);
             config.configureFileChooser(directoryChooser);
             paths = config.showSubFolders(directoryChooser);
             setList();
@@ -74,6 +75,7 @@ public class MainController implements Initializable {
             var count = paths.size();
             lbllistQuant.setText(String.format("%s diretorios localizados", count));
         }
+        format.enableBtnByTwoLists(listCommand, listPath, btnStart);
     }
 
     @FXML
@@ -122,7 +124,7 @@ public class MainController implements Initializable {
                         if (num == -1) {
                             num = value.lastIndexOf("\\");
                         }
-                        String pathName = value.substring(num);
+                        String pathName = value.substring(num + 1);
                         String message = String.format("Executando comando: %s\t na Pasta: %s\n", exec, pathName);
                         console.appendText(message);
                         if (result.isEmpty()) {

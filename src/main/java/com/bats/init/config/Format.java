@@ -64,4 +64,13 @@ public class Format {
         }
         return s.substring(i + 1);
     }
+
+    public void checkList(ListView<String> listPath, ListView<String> directoryName) {
+        var lista1 = listPath.getItems().stream().collect(Collectors.toList());
+        var list2 = directoryName.getItems().stream().collect(Collectors.toList());
+        if(!lista1.isEmpty() || !list2.isEmpty()){
+            listPath.getItems().clear();
+            directoryName.getItems().clear();
+        }
+    }
 }
