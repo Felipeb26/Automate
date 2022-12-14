@@ -13,7 +13,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane prefHeight="700.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bats.init.controller.MainController">
    <top>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
@@ -44,36 +43,63 @@
       </HBox>
    </top>
    <left>
-      <VBox prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="inputCommand" prefHeight="28.0" prefWidth="203.0" VBox.vgrow="ALWAYS">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </TextField>
-            <ListView fx:id="listCommand" editable="true" prefHeight="283.0" prefWidth="190.0" VBox.vgrow="ALWAYS">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin>
-            </ListView>
-            <Label fx:id="lblErro" prefHeight="50.0" prefWidth="302.0" text="tes" textFill="#b21313" underline="true">
+            <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+               <children>
+                  <TextField fx:id="inputCommand" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </TextField>
+                  <ListView fx:id="listCommand" editable="true" VBox.vgrow="ALWAYS">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </ListView>
+                  <Label fx:id="lblErro" text="tes" textFill="#b21313" underline="true" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets left="5.0" right="5.0" />
+               </padding>
+            </VBox>
+         </children>
+      </HBox>
+   </left>
+   <right>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="lbllistQuant" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="diretorios encontrados" textAlignment="RIGHT" underline="true" VBox.vgrow="ALWAYS">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="16.0" prefWidth="468.0" text="PASTA" underline="true" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="16.0" prefWidth="464.0" text="CAMINHO" underline="true" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox VBox.vgrow="ALWAYS">
+               <children>
+                  <ListView fx:id="directoryName" onMouseClicked="#removeItem" HBox.hgrow="ALWAYS" />
+                  <ListView fx:id="listPath" onMouseClicked="#removeItem" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
          </children>
-         <padding>
-            <Insets left="5.0" right="5.0" />
-         </padding>
       </VBox>
-   </left>
-   <right>
-      <HBox maxWidth="300.0" BorderPane.alignment="CENTER">
-         <children>
-            <ListView HBox.hgrow="ALWAYS" />
-            <ListView fx:id="listPath" onMouseClicked="#removeItem" HBox.hgrow="ALWAYS" />
-         </children>
-      </HBox>
    </right>
    <bottom>
       <HBox prefHeight="250.0" prefWidth="200.0" BorderPane.alignment="CENTER">
@@ -90,6 +116,6 @@
       </HBox>
    </bottom>
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <AnchorPane BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>

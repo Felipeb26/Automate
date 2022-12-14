@@ -3,7 +3,6 @@ package com.bats.init.controller;
 import com.bats.init.config.Configs;
 import com.bats.init.config.Exceptions;
 import com.bats.init.config.Format;
-import com.bats.init.service.Background;
 import com.bats.init.service.Console;
 import com.bats.init.service.ExecuteOnTerminal;
 import com.bats.init.service.OpenTerminal;
@@ -31,18 +30,17 @@ public class MainController implements Initializable {
     private final Configs config = new Configs();
 
     private List<String> paths = new ArrayList<>();
-    private static String s;
 
     @FXML
     private static DirectoryChooser directoryChooser;
     @FXML
     private Button btnOpenDir, btnAddCommand, btnStart;
     @FXML
-    private ListView<String> listPath, listCommand;
+    private ListView<String> listPath, listCommand, directoryName;
     @FXML
     private TextField inputCommand;
     @FXML
-    private Label lblErro;
+    private Label lblErro, lbllistQuant;
     @FXML
     private TextArea console;
     private PrintStream ps;
@@ -53,8 +51,6 @@ public class MainController implements Initializable {
         listCommand.getItems().add("--commands to execute--");
         ps = new PrintStream(new Console(console));
         btnStart.setDisable(true);
-//        System.out.println(ps);
-//        System.err.println(ps);
         getPath();
         start();
         addCommand();
@@ -72,14 +68,26 @@ public class MainController implements Initializable {
     private void setList() {
         for (var p : paths) {
             listPath.getItems().add(p);
+            directoryName.getItems().add(format.pathName(p));
+        }
+        if (!paths.isEmpty()) {
+            var count = paths.size();
+            lbllistQuant.setText(String.format("%s diretorios localizados", count));
         }
     }
 
     @FXML
     private void removeItem(MouseEvent mouseEvent) {
         var item = listPath.getSelectionModel().getSelectedIndex();
+        var iten = directoryName.getSelectionModel().getSelectedIndex();
         if (item > -1) {
             listPath.getItems().remove(item);
+            directoryName.getItems().remove(item);
+            format.updateSize(listPath, lbllistQuant);
+        } else if (iten > -1) {
+            directoryName.getItems().remove(iten);
+            listPath.getItems().remove(iten);
+            format.updateSize(listPath, lbllistQuant);
         }
     }
 
@@ -106,33 +114,34 @@ public class MainController implements Initializable {
                 format.resetConsole(console);
 
                 var list = format.toList(listPath);
-//                for (String value : list) {
-//                    var command = format.toListOfCommands(listCommand);
-//                    for (var exec : command) {
-//                        var result = execute.execs(exec, value, ps);
-////                        var num = value.lastIndexOf("/");
-////                        if (num == -1) {
-////                            num = value.lastIndexOf("\\");
-////                        }
-////                        value = value.substring(num);
-//                        String message = String.format("Executando comando: %s\t na Pasta: %s", exec, value);
-//                        console.appendText(message);
-//                        if (result.isEmpty()) {
-//                            System.out.println(result);
-//                        } else {
-//                            for (var text : result) {
-//                                text = text + "\n";
-//                                console.appendText(text);
-//                            }
-//                        }
-//                        console.appendText(message.replace("Executando", "Finalizando\n\n"));
-//                    }
-//                }
-//                format.resetCommandList(listCommand);
-//                lblErro.setText("Finalizado todos comandos!");
+                for (String value : list) {
+                    var command = format.toListOfCommands(listCommand);
+                    for (var exec : command) {
+                        var result = execute.execs(exec, value, ps);
+                        var num = value.lastIndexOf("/");
+                        if (num == -1) {
+                            num = value.lastIndexOf("\\");
+                        }
+                        String pathName = value.substring(num);
+                        String message = String.format("Executando comando: %s\t na Pasta: %s\n", exec, pathName);
+                        console.appendText(message);
+                        if (result.isEmpty()) {
+                            System.out.println(result);
+                        } else {
+                            for (var text : result) {
+                                text = text + "\n";
+                                console.appendText(text);
+                            }
+                        }
+                        message = message.replace("Executando", "Finalizando") + "\n";
+                        console.appendText(message);
+                    }
+                }
+                format.resetCommandList(listCommand);
+                lblErro.setText("Finalizado todos comandos!");
 //
-                Background background = new Background(listPath, listCommand, console, ps, lblErro);
-                new Thread(background).start();
+//                Background background = new Background(listPath, listCommand, console, ps, lblErro);
+//                new Thread(background).start();
             } catch (Exception e) {
                 Exceptions.ToText(e, ps);
                 System.out.println(e.getMessage());

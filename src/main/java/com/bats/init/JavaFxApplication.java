@@ -45,7 +45,7 @@ public class JavaFxApplication extends Application {
         stage.setScene(new Scene(parent));
         stage.setMinHeight(700);
         stage.setMinWidth(500);
-        stage.setResizable(false);
+//        stage.setResizable(false);
         stage.setTitle("AUTOMATE");
         stage.show();
     }

@@ -1,6 +1,7 @@
 package com.bats.init.config;
 
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import org.springframework.stereotype.Service;
@@ -48,4 +49,19 @@ public class Format {
         }
     }
 
+    public void updateSize(ListView<String> list, Label label) {
+        var lista = list.getItems().stream().collect(Collectors.toList());
+        if (!lista.isEmpty()) {
+            var count = lista.size();
+            label.setText(String.format("%s diretorios listados!", count));
+        }
+    }
+
+    public String pathName(String s) {
+        var i = s.lastIndexOf("/");
+        if (i == -1) {
+            i = s.lastIndexOf("\\");
+        }
+        return s.substring(i + 1);
+    }
 }

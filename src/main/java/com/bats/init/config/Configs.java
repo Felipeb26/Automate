@@ -64,17 +64,14 @@ public class Configs {
             num = place.lastIndexOf("/");
         }
         place = place.substring(num + 1);
-        if (!place.startsWith(".")) {
+        if (!place.startsWith(".") && !place.startsWith("node")) {
             return path.toString();
-        } else {
-            return "";
         }
+        return "";
     }
 
     public void configureFileChooser(DirectoryChooser directoryChooser) {
         directoryChooser.setInitialDirectory(new File(path));
         directoryChooser.setTitle("Open directory with all pastes");
     }
-
-
 }

@@ -40,6 +40,9 @@ public class Background extends Task<String> {
                 var command = format.toListOfCommands(listCommand);
                 for (var exec : command) {
                     var result = execute.execs(exec, value, ps);
+                    if (result.isEmpty()) {
+                        System.out.println("lista vazia");
+                    }
                     var num = value.lastIndexOf("/");
 //                    if (num == -1) {
 //                        num = value.lastIndexOf("\\");
@@ -61,7 +64,7 @@ public class Background extends Task<String> {
             }
             format.resetCommandList(listCommand);
             lblErro.setText("Finalizado todos comandos!");
-        }catch (Exception e){
+        } catch (Exception e) {
             Exceptions.ToText(e, ps);
         }
         return values;
