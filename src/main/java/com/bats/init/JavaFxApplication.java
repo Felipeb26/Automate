@@ -51,7 +51,6 @@ public class JavaFxApplication extends Application {
         scene.getStylesheets().add("css/index.css");
 
         stage.setScene(scene);
-//        root.setOpacity(0.5);
         stage.setMinHeight(700);
         stage.setMinWidth(500);
         stage.show();

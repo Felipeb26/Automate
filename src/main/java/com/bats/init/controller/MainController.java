@@ -101,7 +101,7 @@ public class MainController implements Initializable {
     private void addCommand() {
         btnAddCommand.setOnAction(Event -> {
             String value = inputCommand.getText();
-            if (nonNull(value) && !value.isBlank()) {
+            if (!value.isEmpty() && !value.isBlank()) {
                 config.List(listCommand);
                 inputCommand.setText("");
                 listCommand.getItems().add(value);
