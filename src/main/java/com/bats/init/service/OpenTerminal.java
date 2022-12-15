@@ -13,15 +13,6 @@ public class OpenTerminal {
     private static final String cd = "cd";
     private static Robot robot;
 
-//    public static void main(String[] args) {
-//        System.out.println(os);
-//        if (os.contains("windows")) {
-//            openWindowsTerminal(os);
-//        }else if(os.contains("linux")){
-//            openLinuxTerminal();
-//        }
-//    }
-
     public void discoverSystem(String path) {
         System.out.println(os);
         if (os.contains("windows")) {

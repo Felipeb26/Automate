@@ -33,8 +33,15 @@ public class ExecuteOnTerminal {
             command = String.format("powershell.exe %s", command);
             path = path + "/";
             Process p = Runtime.getRuntime().exec(command, null, new File(path));
+
             BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            BufferedReader br = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+
             while ((lines = reader.readLine()) != null) {
+                strings.add(lines);
+            }
+
+            while((lines = br.readLine())!=null){
                 strings.add(lines);
             }
             return strings;

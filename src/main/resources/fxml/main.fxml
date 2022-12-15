@@ -155,7 +155,7 @@
     <bottom>
         <HBox prefHeight="250.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <children>
-                <TextArea fx:id="console" editable="false" prefHeight="153.0" prefWidth="500.0" HBox.hgrow="ALWAYS">
+                <TextArea fx:id="console" editable="false" prefHeight="153.0" prefWidth="500.0" wrapText="true" HBox.hgrow="ALWAYS">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
