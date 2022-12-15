@@ -132,6 +132,8 @@ public class MainController implements Initializable {
                     var value = String.valueOf(newValue);
                     if (value.equals("finite")) {
                         lblErro.setText("Finalizado comandos informadas!");
+                        console.appendText("Finalizado comandos informadas!");
+                        image.setVisible(false);
                         format.resetCommandList(listCommand);
                     } else {
                         console.appendText(value);
