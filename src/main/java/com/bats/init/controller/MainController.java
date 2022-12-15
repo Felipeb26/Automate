@@ -11,9 +11,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
+import org.apache.commons.lang3.ClassLoaderUtils;
 import org.springframework.stereotype.Component;
 
 import java.io.PrintStream;
@@ -49,9 +53,9 @@ public class MainController implements Initializable {
     private PrintStream ps;
     private Stage stage;
     private static double yoffset, xoffset;
-    @FXML
-    private ProgressIndicator progress;
     private Thread th;
+    @FXML
+    private ImageView image;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -62,6 +66,7 @@ public class MainController implements Initializable {
         stop();
         start();
         addCommand();
+        image.setVisible(false);
     }
 
     private void getPath() {
@@ -121,7 +126,7 @@ public class MainController implements Initializable {
                 ps = new PrintStream(new Console(console));
                 format.resetConsole(console);
                 format.resetLabel(lblErro);
-
+                image.setVisible(true);
                 Background background = new Background(listPath, listCommand, ps);
                 background.messageProperty().addListener((observable, oldValue, newValue) -> {
                     var value = String.valueOf(newValue);
@@ -194,6 +199,10 @@ public class MainController implements Initializable {
     public void fullStage(MouseEvent me) {
         stage = (Stage) ((Node) me.getSource()).getScene().getWindow();
         stage.setFullScreen(!stage.isFullScreen());
+    }
+
+    private void image(){
+
     }
 
 }
