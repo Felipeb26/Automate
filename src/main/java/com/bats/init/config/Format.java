@@ -73,4 +73,11 @@ public class Format {
             directoryName.getItems().clear();
         }
     }
+
+    public void resetLabel(Label lblErro) {
+       var lbl = lblErro.getText();
+       if(!lbl.isEmpty() || !lbl.isBlank()){
+           lblErro.setText("");
+       }
+    }
 }

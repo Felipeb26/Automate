@@ -1,72 +1,57 @@
 package com.bats.init.service;
 
-import com.bats.init.config.Exceptions;
 import com.bats.init.config.Format;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
 
 import java.io.PrintStream;
 
 public class Background extends Task<String> {
 
-    private final ExecuteOnTerminal execute = new ExecuteOnTerminal();
-    private final Format format = new Format();
-
+    private static ExecuteOnTerminal execute;
+    private static Format format;
     @FXML
     private ListView<String> listPath, listCommand;
-    @FXML
-    private TextArea console;
-    private static String values;
     private PrintStream ps;
+    private static final String finite = "finite";
+    private static String values;
 
-    private Label lblErro;
-
-    public Background(ListView<String> listPath, ListView<String> listCommand, TextArea textArea, PrintStream print, Label label) {
+    public Background(ListView<String> listPath, ListView<String> listCommand, PrintStream print) {
         this.listPath = listPath;
         this.listCommand = listCommand;
-        this.console = textArea;
         this.ps = print;
-        this.lblErro = label;
     }
 
     @Override
-    protected String call() {
-        try {
-            var list = format.toList(listPath);
-            for (String value : list) {
-                var command = format.toListOfCommands(listCommand);
-                for (var exec : command) {
-                    var result = execute.execs(exec, value, ps);
-                    if (result.isEmpty()) {
-                        System.out.println("lista vazia");
-                    }
-                    var num = value.lastIndexOf("/");
-//                    if (num == -1) {
-//                        num = value.lastIndexOf("\\");
-//                    }
-//                    value = value.substring(num);
-                    String message = String.format("Executando comando: %s\t", exec);
-                    console.appendText(message);
-                    if (result.isEmpty()) {
-                        System.out.println(result);
-                    } else {
-                        for (var text : result) {
-                            values = text + "\n";
-                            console.appendText(values);
-                            updateValue(values);
-                        }
-                    }
-                    console.appendText(message.replace("Executando", "Finalizando"));
+    protected String call() throws Exception {
+        execute = new ExecuteOnTerminal();
+        format = new Format();
+        var list = format.toList(listPath);
+        for (String value : list) {
+            var command = format.toListOfCommands(listCommand);
+            for (var exec : command) {
+                var result = execute.execs(exec, value, ps);
+                var num = value.lastIndexOf("/");
+                if (num == -1) {
+                    num = value.lastIndexOf("\\");
                 }
+                String pathName = value.substring(num + 1);
+                values = String.format("Executando comando: %s\t na Pasta: %s\n", exec, pathName);
+                updateMessage(values);
+                if (!result.isEmpty()) {
+                    for (var text : result) {
+                        values = text + "\n";
+                        Thread.sleep(150);
+                        updateMessage(values);
+                    }
+                }
+                values = String.format("Finalizano comando: %s\t na Pasta: %s\n\n", exec, pathName);
+                updateMessage(values);
             }
-            format.resetCommandList(listCommand);
-            lblErro.setText("Finalizado todos comandos!");
-        } catch (Exception e) {
-            Exceptions.ToText(e, ps);
         }
+        values = finite;
+        updateMessage(values);
         return values;
     }
 

@@ -3,6 +3,7 @@ package com.bats.init.controller;
 import com.bats.init.config.Configs;
 import com.bats.init.config.Exceptions;
 import com.bats.init.config.Format;
+import com.bats.init.service.Background;
 import com.bats.init.service.Console;
 import com.bats.init.service.ExecuteOnTerminal;
 import com.bats.init.service.OpenTerminal;
@@ -21,6 +22,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import static java.util.Objects.nonNull;
+
 @Component
 public class MainController implements Initializable {
 
@@ -34,7 +37,7 @@ public class MainController implements Initializable {
     @FXML
     private static DirectoryChooser directoryChooser;
     @FXML
-    private Button btnOpenDir, btnAddCommand, btnStart, btnMinimize, btnClose, btnFull;
+    private Button btnOpenDir, btnAddCommand, btnStart, btnStop, btnMinimize, btnClose, btnFull;
     @FXML
     private ListView<String> listPath, listCommand, directoryName;
     @FXML
@@ -47,7 +50,8 @@ public class MainController implements Initializable {
     private Stage stage;
     private static double yoffset, xoffset;
     @FXML
-    private ToolBar toolBar;
+    private ProgressIndicator progress;
+    private Thread th;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -55,6 +59,7 @@ public class MainController implements Initializable {
         ps = new PrintStream(new Console(console));
         btnStart.setDisable(true);
         getPath();
+        stop();
         start();
         addCommand();
     }
@@ -114,41 +119,47 @@ public class MainController implements Initializable {
         btnStart.setOnAction(Event -> {
             try {
                 ps = new PrintStream(new Console(console));
-                System.out.println(ps);
-                System.err.println(ps);
                 format.resetConsole(console);
+                format.resetLabel(lblErro);
 
-                var list = format.toList(listPath);
-                for (String value : list) {
-                    var command = format.toListOfCommands(listCommand);
-                    for (var exec : command) {
-                        var result = execute.execs(exec, value, ps);
-                        var num = value.lastIndexOf("/");
-                        if (num == -1) {
-                            num = value.lastIndexOf("\\");
-                        }
-                        String pathName = value.substring(num + 1);
-                        String message = String.format("Executando comando: %s\t na Pasta: %s\n", exec, pathName);
-                        console.appendText(message);
-                        if (result.isEmpty()) {
-                            System.out.println(result);
-                        } else {
-                            for (var text : result) {
-                                text = text + "\n";
-                                console.appendText(text);
-                            }
-                        }
-                        message = message.replace("Executando", "Finalizando") + "\n";
-                        console.appendText(message);
+                Background background = new Background(listPath, listCommand, ps);
+                background.messageProperty().addListener((observable, oldValue, newValue) -> {
+                    var value = String.valueOf(newValue);
+                    if (value.equals("finite")) {
+                        lblErro.setText("Finalizado comandos informadas!");
+                        format.resetCommandList(listCommand);
+                    } else {
+                        console.appendText(value);
                     }
-                }
-                format.resetCommandList(listCommand);
-                lblErro.setText("Finalizado todos comandos!");
-//                Background background = new Background(listPath, listCommand, console, ps, lblErro);
-//                new Thread(background).start();
+                });
+
+                th = new Thread(background);
+                th.setDaemon(true);
+                th.start();
+
+
+//                CounterTask task = new CounterTask(150000L);
+//                task.valueProperty().addListener((observable, oldValue, newValue) -> lbllistQuant.setText(String.valueOf(newValue)));
+//
+//                progress.progressProperty().bind(task.progressProperty());
+//                Thread thread = new Thread(task);
+//                thread.setDaemon(true);
+//                thread.start();
+//                System.out.println(background.get());
             } catch (Exception e) {
                 Exceptions.ToText(e, ps);
                 System.out.println(e.getMessage());
+            }
+        });
+    }
+
+    private void stop() {
+        btnStop.setOnAction(event -> {
+            if (nonNull(th) && th.isAlive()) {
+                th.interrupt();
+                lblErro.setText("Comando interrompido!");
+            } else {
+                lblErro.setText("Projeto não está rodando!");
             }
         });
     }
