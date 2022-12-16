@@ -41,8 +41,8 @@
   -fx-border-radius: 2;
 }
 
-.img-view{
-    -fx-background-image: url(@../css/load.gif);
+.root>#loads{
+    -fx-background-image: url('../image/load.gif');
     -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;

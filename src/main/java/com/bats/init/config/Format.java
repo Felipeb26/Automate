@@ -51,10 +51,8 @@ public class Format {
 
     public void updateSize(ListView<String> list, Label label) {
         var lista = list.getItems().stream().collect(Collectors.toList());
-        if (!lista.isEmpty()) {
-            var count = lista.size();
-            label.setText(String.format("%s diretorios listados!", count));
-        }
+        var count = lista.stream().count();
+        label.setText(String.format("%s diretorios listados!", count));
     }
 
     public String pathName(String s) {
@@ -68,16 +66,16 @@ public class Format {
     public void checkList(ListView<String> listPath, ListView<String> directoryName) {
         var lista1 = listPath.getItems().stream().collect(Collectors.toList());
         var list2 = directoryName.getItems().stream().collect(Collectors.toList());
-        if(!lista1.isEmpty() || !list2.isEmpty()){
+        if (!lista1.isEmpty() || !list2.isEmpty()) {
             listPath.getItems().clear();
             directoryName.getItems().clear();
         }
     }
 
     public void resetLabel(Label lblErro) {
-       var lbl = lblErro.getText();
-       if(!lbl.isEmpty() || !lbl.isBlank()){
-           lblErro.setText("");
-       }
+        var lbl = lblErro.getText();
+        if (!lbl.isEmpty() || !lbl.isBlank()) {
+            lblErro.setText("");
+        }
     }
 }

@@ -15,6 +15,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import org.apache.commons.lang3.ClassLoaderUtils;
@@ -55,7 +56,7 @@ public class MainController implements Initializable {
     private static double yoffset, xoffset;
     private Thread th;
     @FXML
-    private ImageView image;
+    private VBox loads;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -66,7 +67,7 @@ public class MainController implements Initializable {
         stop();
         start();
         addCommand();
-        image.setVisible(false);
+        loads.setOpacity(0);
     }
 
     private void getPath() {
@@ -121,38 +122,29 @@ public class MainController implements Initializable {
     }
 
     private void start() {
-        btnStart.setOnAction(Event -> {
+        btnStart.setOnAction(event -> {
             try {
+                loads.setOpacity(1);
                 ps = new PrintStream(new Console(console));
                 format.resetConsole(console);
                 format.resetLabel(lblErro);
-                image.setVisible(true);
                 Background background = new Background(listPath, listCommand, ps);
                 background.messageProperty().addListener((observable, oldValue, newValue) -> {
                     var value = String.valueOf(newValue);
                     if (value.equals("finite")) {
                         lblErro.setText("Finalizado comandos informadas!");
+                        lblErro.setStyle("-fx-text-fill: red;");
                         console.appendText("Finalizado comandos informadas!");
-                        image.setVisible(false);
+                        loads.setOpacity(0);
                         format.resetCommandList(listCommand);
                     } else {
                         console.appendText(value);
                     }
                 });
-
                 th = new Thread(background);
                 th.setDaemon(true);
                 th.start();
 
-
-//                CounterTask task = new CounterTask(150000L);
-//                task.valueProperty().addListener((observable, oldValue, newValue) -> lbllistQuant.setText(String.valueOf(newValue)));
-//
-//                progress.progressProperty().bind(task.progressProperty());
-//                Thread thread = new Thread(task);
-//                thread.setDaemon(true);
-//                thread.start();
-//                System.out.println(background.get());
             } catch (Exception e) {
                 Exceptions.ToText(e, ps);
                 System.out.println(e.getMessage());
@@ -201,10 +193,6 @@ public class MainController implements Initializable {
     public void fullStage(MouseEvent me) {
         stage = (Stage) ((Node) me.getSource()).getScene().getWindow();
         stage.setFullScreen(!stage.isFullScreen());
-    }
-
-    private void image(){
-
     }
 
 }
