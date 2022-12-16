@@ -99,7 +99,7 @@
                                 <Font name="System Bold" size="14.0" />
                             </font>
                         </TextField>
-                        <ListView fx:id="listCommand" editable="true" VBox.vgrow="ALWAYS">
+                        <ListView fx:id="listCommand" editable="true" onMouseClicked="#editCommand" VBox.vgrow="ALWAYS">
                             <VBox.margin>
                                 <Insets top="5.0" />
                             </VBox.margin>

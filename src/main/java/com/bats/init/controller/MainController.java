@@ -156,6 +156,7 @@ public class MainController implements Initializable {
         btnStop.setOnAction(event -> {
             if (nonNull(th) && th.isAlive()) {
                 th.interrupt();
+                loads.setOpacity(0);
                 lblErro.setText("Comando interrompido!");
             } else {
                 lblErro.setText("Projeto não está rodando!");
@@ -195,4 +196,13 @@ public class MainController implements Initializable {
         stage.setFullScreen(!stage.isFullScreen());
     }
 
+    @FXML
+    public void editCommand(MouseEvent mouseEvent) {
+        var index = listCommand.getSelectionModel().getSelectedIndex();
+        var text = inputCommand.getText();
+        if (!text.isBlank() || !text.isEmpty()) {
+            listCommand.getItems().remove(index);
+            listCommand.getItems().add(index, text);
+        }
+    }
 }
