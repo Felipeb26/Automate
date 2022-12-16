@@ -6,6 +6,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -50,6 +51,8 @@ public class JavaFxApplication extends Application {
         stage.initStyle(StageStyle.TRANSPARENT);
         scene.getStylesheets().add("css/index.css");
 
+        var path = JavaFxApplication.class.getResourceAsStream("/image/icon.png");
+        stage.getIcons().add(new Image(requireNonNull(path)));
         stage.setScene(scene);
         stage.setMinHeight(700);
         stage.setMinWidth(500);
