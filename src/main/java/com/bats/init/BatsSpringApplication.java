@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class BatsSpringApplication {
 
-	public static void main(String[] args) {
-		Application.launch(JavaFxApplication.class);
-	}
+    public static void main(String[] args) {
+        Application.launch(JavaFxApplication.class);
+    }
 
 }

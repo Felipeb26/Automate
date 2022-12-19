@@ -15,11 +15,11 @@ import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.GenericApplicationContext;
 
-import static java.util.Objects.requireNonNull;
-
 public class JavaFxApplication extends Application {
 
     private ConfigurableApplicationContext springContext;
+    private static Parent root;
+    private static Scene scene;
 
     @Override
     public void init() {
@@ -44,15 +44,20 @@ public class JavaFxApplication extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(requireNonNull(JavaFxApplication.class.getResource("/fxml/main.fxml")));
-        Scene scene = new Scene(root);
+        var xml = JavaFxApplication.class.getResource("/fxml/main.fxml");
+        if(xml != null){
+            root = FXMLLoader.load(xml);
+            scene = new Scene(root);
+        }
 
         scene.setFill(Color.TRANSPARENT);
         stage.initStyle(StageStyle.TRANSPARENT);
         scene.getStylesheets().add("css/index.css");
 
         var path = JavaFxApplication.class.getResourceAsStream("/image/icon.png");
-        stage.getIcons().add(new Image(requireNonNull(path)));
+        if (path != null) {
+            stage.getIcons().add(new Image(path));
+        }
         stage.setScene(scene);
         stage.setMinHeight(700);
         stage.setMinWidth(500);

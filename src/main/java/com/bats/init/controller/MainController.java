@@ -5,20 +5,15 @@ import com.bats.init.config.Exceptions;
 import com.bats.init.config.Format;
 import com.bats.init.service.Background;
 import com.bats.init.service.Console;
-import com.bats.init.service.ExecuteOnTerminal;
-import com.bats.init.service.OpenTerminal;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.cell.TextFieldListCell;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
-import org.apache.commons.lang3.ClassLoaderUtils;
 import org.springframework.stereotype.Component;
 
 import java.io.PrintStream;
@@ -32,17 +27,13 @@ import static java.util.Objects.nonNull;
 @Component
 public class MainController implements Initializable {
 
-    private final ExecuteOnTerminal execute = new ExecuteOnTerminal();
-    private final OpenTerminal terminal = new OpenTerminal();
     private final Format format = new Format();
     private final Configs config = new Configs();
-
     private List<String> paths = new ArrayList<>();
-
     @FXML
     private static DirectoryChooser directoryChooser;
     @FXML
-    private Button btnOpenDir, btnAddCommand, btnStart, btnStop, btnMinimize, btnClose, btnFull;
+    private Button btnOpenDir, btnAddCommand, btnStart, btnStop, btnAbout, btnMinimize, btnClose, btnFull;
     @FXML
     private ListView<String> listPath, listCommand, directoryName;
     @FXML
@@ -61,12 +52,16 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         listCommand.getItems().add("--commands to execute--");
+        inputCommand.setPromptText("digite o comando!!");
         ps = new PrintStream(new Console(console));
         btnStart.setDisable(true);
+        listCommand.setEditable(true);
+        listCommand.setCellFactory(TextFieldListCell.forListView());
+        addCommand();
         getPath();
         stop();
+        configsScene();
         start();
-        addCommand();
         loads.setOpacity(0);
     }
 
@@ -92,21 +87,6 @@ public class MainController implements Initializable {
         format.enableBtnByTwoLists(listCommand, listPath, btnStart);
     }
 
-    @FXML
-    private void removeItem(MouseEvent mouseEvent) {
-        var item = listPath.getSelectionModel().getSelectedIndex();
-        var iten = directoryName.getSelectionModel().getSelectedIndex();
-        if (item > -1) {
-            listPath.getItems().remove(item);
-            directoryName.getItems().remove(item);
-            format.updateSize(listPath, lbllistQuant);
-        } else if (iten > -1) {
-            directoryName.getItems().remove(iten);
-            listPath.getItems().remove(iten);
-            format.updateSize(listPath, lbllistQuant);
-        }
-    }
-
     private void addCommand() {
         btnAddCommand.setOnAction(Event -> {
             String value = inputCommand.getText();
@@ -124,18 +104,22 @@ public class MainController implements Initializable {
     private void start() {
         btnStart.setOnAction(event -> {
             try {
+                String path = MainController.class.getResource("/image/sleep.gif").toExternalForm();
+
                 loads.setOpacity(1);
                 ps = new PrintStream(new Console(console));
                 format.resetConsole(console);
                 format.resetLabel(lblErro);
+                config.npmCahche();
                 Background background = new Background(listPath, listCommand, ps);
                 background.messageProperty().addListener((observable, oldValue, newValue) -> {
                     var value = String.valueOf(newValue);
                     if (value.equals("finite")) {
                         lblErro.setText("Finalizado comandos informadas!");
-                        lblErro.setStyle("-fx-text-fill: red;");
+                        lblErro.setStyle("-fx-text-fill: #D10000;");
                         console.appendText("Finalizado comandos informadas!");
-                        loads.setOpacity(0);
+                        var image = String.format("-fx-background-image: url('%s');", path);
+                        loads.setStyle(image);
                         format.resetCommandList(listCommand);
                     } else {
                         console.appendText(value);
@@ -162,6 +146,28 @@ public class MainController implements Initializable {
                 lblErro.setText("Projeto não está rodando!");
             }
         });
+    }
+
+    private void configsScene() {
+        btnAbout.setOnAction(event -> {
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            config.changeScene(MainController.class, "/fxml/configs.fxml", ps, stage);
+        });
+    }
+
+    @FXML
+    private void removeItem(MouseEvent mouseEvent) {
+        var item = listPath.getSelectionModel().getSelectedIndex();
+        var iten = directoryName.getSelectionModel().getSelectedIndex();
+        if (item > -1) {
+            listPath.getItems().remove(item);
+            directoryName.getItems().remove(item);
+            format.updateSize(listPath, lbllistQuant);
+        } else if (iten > -1) {
+            directoryName.getItems().remove(iten);
+            listPath.getItems().remove(iten);
+            format.updateSize(listPath, lbllistQuant);
+        }
     }
 
     @FXML
@@ -199,10 +205,9 @@ public class MainController implements Initializable {
     @FXML
     public void editCommand(MouseEvent mouseEvent) {
         var index = listCommand.getSelectionModel().getSelectedIndex();
-        var text = inputCommand.getText();
-        if (!text.isBlank() || !text.isEmpty()) {
+        if (index > 0) {
+            inputCommand.setText(listCommand.getItems().get(index));
             listCommand.getItems().remove(index);
-            listCommand.getItems().add(index, text);
         }
     }
 }

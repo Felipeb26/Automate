@@ -1,12 +1,20 @@
 package com.bats.init.config;
 
+import com.bats.init.service.ExecuteOnTerminal;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
+import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -21,6 +29,7 @@ public class Configs {
 
     private static final String path = System.getProperty("user.home");
 
+    private final ExecuteOnTerminal execute = new ExecuteOnTerminal();
     @FXML
     private Stage stage;
 
@@ -73,5 +82,40 @@ public class Configs {
     public void configureFileChooser(DirectoryChooser directoryChooser) {
         directoryChooser.setInitialDirectory(new File(path));
         directoryChooser.setTitle("Open directory with all pastes");
+    }
+
+    public void changeScene(Class<?> classe, String path, PrintStream ps, Stage stag) {
+        try {
+            if (!path.startsWith("/fxml/")) {
+                path = "/fxml/" + path + ".fxml";
+            }
+            var xml = classe.getResource(path);
+            if (xml != null) {
+                Parent root = FXMLLoader.load(xml);
+                Scene scene = new Scene(root);
+                stag.close();
+
+                stage = new Stage();
+                scene.setFill(Color.TRANSPARENT);
+                stage.initStyle(StageStyle.TRANSPARENT);
+                scene.getStylesheets().add("css/index.css");
+
+                var icon = classe.getResourceAsStream("/image/icon.png");
+                if (icon != null) {
+                    stage.getIcons().add(new Image(icon));
+                }
+                stage.setScene(scene);
+                stage.setMinHeight(700);
+                stage.setMinWidth(500);
+                stage.show();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Exceptions.ToText(e, ps);
+        }
+    }
+
+    public void npmCahche() {
+        execute.execs("npm clean cache --force", path, null);
     }
 }

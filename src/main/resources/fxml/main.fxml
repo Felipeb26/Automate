@@ -45,6 +45,7 @@
                     </HBox.margin>
                 </Button>
                 <HBox maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+            <Button fx:id="btnAbout" mnemonicParsing="false" prefHeight="27.0" prefWidth="66.0" text="ABOUT" />
                 <Button fx:id="btnMinimize" mnemonicParsing="false" onMouseClicked="#miniStage" prefHeight="16.0" prefWidth="46.0" text="− " HBox.hgrow="ALWAYS">
                     <font>
                         <Font name="System Bold" size="14.0" />
