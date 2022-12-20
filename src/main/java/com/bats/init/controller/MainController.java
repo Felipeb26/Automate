@@ -49,6 +49,8 @@ public class MainController implements Initializable {
     @FXML
     private VBox loads;
 
+    private static int indexCommand = 0;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         listCommand.getItems().add("--commands to execute--");
@@ -202,12 +204,4 @@ public class MainController implements Initializable {
         stage.setFullScreen(!stage.isFullScreen());
     }
 
-    @FXML
-    public void editCommand(MouseEvent mouseEvent) {
-        var index = listCommand.getSelectionModel().getSelectedIndex();
-        if (index > 0) {
-            inputCommand.setText(listCommand.getItems().get(index));
-            listCommand.getItems().remove(index);
-        }
-    }
 }

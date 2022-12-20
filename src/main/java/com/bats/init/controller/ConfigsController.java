@@ -88,12 +88,10 @@ public class ConfigsController implements Initializable {
                     stackPane.getChildren().setAll(root);
                 });
             }
-            System.out.println("url é" + url);
         } catch (Exception e) {
             e.printStackTrace();
             Exceptions.ToText(e, null);
         }
     }
-
 
 }

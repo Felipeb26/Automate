@@ -28,17 +28,14 @@
   -fx-border-color: white;
   -fx-font-weight: bold;
   -fx-underline: true;
-   -fx-border-width: 1;
+  -fx-border-width: 2;
   -fx-border-radius: 2;
 }
+
 .button:hover{
   -fx-background-color: white;
   -fx-text-fill: rgba(12,12,12);
   -fx-border-color: rgba(12,12,12);
-  -fx-font-weight: bold;
-  -fx-underline: true;
-  -fx-border-width: 1;
-  -fx-border-radius: 2;
 }
 
 .root>#loads{

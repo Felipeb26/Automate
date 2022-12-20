@@ -23,12 +23,12 @@
                         <Insets left="5.0" right="5.0" />
                     </HBox.margin>
                 </Button>
-                <Button fx:id="btnStop" mnemonicParsing="false" prefHeight="16.0" prefWidth="100.0" text="STOP" HBox.hgrow="ALWAYS">
+                <Button fx:id="btnStop" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="STOP" HBox.hgrow="ALWAYS">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
                 </Button>
-                <Button fx:id="btnAddCommand" defaultButton="true" mnemonicParsing="false" prefHeight="16.0" prefWidth="130.0" style="-fx-border-radius: 2;" text="ADD COMAND" HBox.hgrow="ALWAYS">
+                <Button fx:id="btnAddCommand" defaultButton="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" style="-fx-border-radius: 2;" text="ADD COMAND" HBox.hgrow="ALWAYS">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
@@ -36,7 +36,7 @@
                         <Insets left="5.0" right="5.0" />
                     </HBox.margin>
                 </Button>
-                <Button fx:id="btnOpenDir" mnemonicParsing="false" prefHeight="16.0" prefWidth="100.0" text="FILES" HBox.hgrow="ALWAYS">
+                <Button fx:id="btnOpenDir" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="FILES" HBox.hgrow="ALWAYS">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
@@ -46,7 +46,7 @@
                 </Button>
                 <HBox maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
             <Button fx:id="btnAbout" mnemonicParsing="false" prefHeight="27.0" prefWidth="66.0" text="ABOUT" />
-                <Button fx:id="btnMinimize" mnemonicParsing="false" onMouseClicked="#miniStage" prefHeight="16.0" prefWidth="46.0" text="− " HBox.hgrow="ALWAYS">
+                <Button fx:id="btnMinimize" mnemonicParsing="false" onMouseClicked="#miniStage" prefHeight="27.0" prefWidth="46.0" text="− " HBox.hgrow="ALWAYS">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
@@ -54,7 +54,7 @@
                         <Insets left="5.0" right="5.0" />
                     </HBox.margin>
                 </Button>
-                <Button fx:id="btnFull" mnemonicParsing="false" onMouseClicked="#fullStage" prefHeight="16.0" prefWidth="45.0" text="⃞" HBox.hgrow="ALWAYS">
+                <Button fx:id="btnFull" mnemonicParsing="false" onMouseClicked="#fullStage" prefHeight="27.0" prefWidth="45.0" text="⃞" HBox.hgrow="ALWAYS">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
@@ -62,7 +62,7 @@
                         <Insets left="5.0" right="5.0" />
                     </HBox.margin>
                 </Button>
-                <Button fx:id="bntClose" mnemonicParsing="false" onMouseClicked="#closeStage" prefHeight="16.0" prefWidth="30.0" text="X" HBox.hgrow="ALWAYS">
+                <Button fx:id="bntClose" mnemonicParsing="false" onMouseClicked="#closeStage" prefHeight="27.0" prefWidth="30.0" text="X" HBox.hgrow="ALWAYS">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
@@ -100,7 +100,7 @@
                                 <Font name="System Bold" size="14.0" />
                             </font>
                         </TextField>
-                        <ListView fx:id="listCommand" editable="true" onMouseClicked="#editCommand" VBox.vgrow="ALWAYS">
+                        <ListView fx:id="listCommand" editable="true" VBox.vgrow="ALWAYS">
                             <VBox.margin>
                                 <Insets top="5.0" />
                             </VBox.margin>

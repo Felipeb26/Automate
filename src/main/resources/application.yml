@@ -1,4 +1,9 @@
+application:
+  title: AUTOMATE
+  version: "1.0.0"
 
 spring:
   main:
     web-application-type: none
+  application:
+    name: Automate
