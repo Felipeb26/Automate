@@ -7,3 +7,10 @@ spring:
     web-application-type: none
   application:
     name: Automate
+  jpa:
+    database-platform: com.bats.init.database.dialect.SQLiteDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource.url: jdbc:sqlite:memory:myDb?cache=shared
+  datasource.driver-class-name: org.sqlite.JDBC

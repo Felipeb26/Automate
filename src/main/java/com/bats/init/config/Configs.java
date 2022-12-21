@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.PrintStream;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -84,7 +85,7 @@ public class Configs {
         directoryChooser.setTitle("Open directory with all pastes");
     }
 
-    public void changeScene(Class<?> classe, String path, PrintStream ps, Stage stag) {
+    public void changeScene(Class<?> classe, String path, PrintStream ps, Stage stag, boolean isFullScreen) {
         try {
             if (!path.startsWith("/fxml/")) {
                 path = "/fxml/" + path + ".fxml";
@@ -104,6 +105,7 @@ public class Configs {
                 if (icon != null) {
                     stage.getIcons().add(new Image(icon));
                 }
+                stage.setFullScreen(isFullScreen);
                 stage.setScene(scene);
                 stage.setMinHeight(700);
                 stage.setMinWidth(500);
@@ -112,6 +114,15 @@ public class Configs {
         } catch (Exception e) {
             e.printStackTrace();
             Exceptions.ToText(e, ps);
+        }
+    }
+
+    public boolean checkUrl(String url) {
+        try {
+            new URL(url).toURI();
+            return true;
+        } catch (Exception e) {
+            return false;
         }
     }
 

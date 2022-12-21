@@ -6,22 +6,28 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="500.0" stylesheets="@../css/about.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bats.init.controller.AboutController">
-   <children>
-      <VBox fx:id="Image" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="700" minWidth="350" HBox.hgrow="ALWAYS" />
-      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: white;" HBox.hgrow="ALWAYS">
-         <children>
-            <Label fx:id="lblAbout" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-text-fill: black;" text="Label" VBox.vgrow="ALWAYS">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="15.0" top="5.0" />
-               </VBox.margin>
-               <padding>
-                  <Insets left="5.0" top="10.0" />
-               </padding>
-            </Label>
-         </children></VBox>
-   </children>
+<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity"
+      prefHeight="700.0" prefWidth="500.0" stylesheets="@../css/index.css" xmlns="http://javafx.com/javafx/19"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bats.init.controller.AboutController">
+    <children>
+        <VBox fx:id="Image" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="700"
+              minWidth="350" HBox.hgrow="ALWAYS"/>
+        <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: white;"
+              HBox.hgrow="ALWAYS">
+            <children>
+                <Label fx:id="lblAbout" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308"
+                       maxWidth="1.7976931348623157E308" style="-fx-text-fill: black;" text="Label" VBox.vgrow="ALWAYS">
+                    <font>
+                        <Font name="System Bold" size="20.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="15.0" top="5.0"/>
+                    </VBox.margin>
+                    <padding>
+                        <Insets left="5.0" top="10.0"/>
+                    </padding>
+                </Label>
+            </children>
+        </VBox>
+    </children>
 </HBox>

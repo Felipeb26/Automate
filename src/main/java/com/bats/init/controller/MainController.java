@@ -1,7 +1,10 @@
 package com.bats.init.controller;
 
-import com.bats.init.config.*;
-import com.bats.init.service.*;
+import com.bats.init.config.Configs;
+import com.bats.init.config.Exceptions;
+import com.bats.init.config.Format;
+import com.bats.init.service.Background;
+import com.bats.init.service.Console;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -30,7 +33,7 @@ public class MainController implements Initializable {
     @FXML
     private static DirectoryChooser directoryChooser;
     @FXML
-    private Button btnOpenDir, btnAddCommand, btnStart, btnStop, btnAbout, btnMinimize, btnClose, btnFull;
+    private Button btnOpenDir, btnAddCommand, btnStart, btnStop, btnAbout;
     @FXML
     private ListView<String> listPath, listCommand, directoryName;
     @FXML
@@ -102,8 +105,10 @@ public class MainController implements Initializable {
         btnStart.setOnAction(event -> {
             try {
                 String path = MainController.class.getResource("/image/sleep.gif").toExternalForm();
+                String loading = MainController.class.getResource("/image/load.gif").toExternalForm();
 
                 loads.setOpacity(1);
+                loads.setStyle(String.format("-fx-background-image: url('%s');", loading));
                 ps = new PrintStream(new Console(console));
                 format.resetConsole(console);
                 format.resetLabel(lblErro);
@@ -148,7 +153,7 @@ public class MainController implements Initializable {
     private void configsScene() {
         btnAbout.setOnAction(event -> {
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            config.changeScene(MainController.class, "/fxml/configs.fxml", ps, stage);
+            config.changeScene(MainController.class, "/fxml/configs.fxml", ps, stage, stage.isFullScreen());
         });
     }
 
