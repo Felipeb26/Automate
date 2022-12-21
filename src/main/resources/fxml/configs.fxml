@@ -15,7 +15,7 @@
                 <HBox maxWidth="1.7976931348623157E308" prefHeight="31.0" prefWidth="676.0" HBox.hgrow="ALWAYS" />
                 <Button fx:id="btnMinimize" mnemonicParsing="false" onMouseClicked="#miniStage" prefHeight="16.0" prefWidth="45.0" text="− " HBox.hgrow="ALWAYS">
                     <font>
-                        <Font size="14.0" />
+                        <Font size="12.0" />
                     </font>
                     <HBox.margin>
                         <Insets left="5.0" right="5.0" />
@@ -23,7 +23,7 @@
                 </Button>
                 <Button fx:id="btnFull" mnemonicParsing="false" onMouseClicked="#fullStage" prefHeight="16.0" prefWidth="45.0" text="⃞" HBox.hgrow="ALWAYS">
                     <font>
-                        <Font size="14.0" />
+                        <Font size="12.0" />
                     </font>
                     <HBox.margin>
                         <Insets left="5.0" right="5.0" />
@@ -31,7 +31,7 @@
                 </Button>
                 <Button fx:id="bntClose" mnemonicParsing="false" onMouseClicked="#closeStage" prefHeight="16.0" prefWidth="45.0" text="X" HBox.hgrow="ALWAYS">
                     <font>
-                        <Font name="System Bold" size="14.0" />
+                        <Font size="12.0" />
                     </font>
                     <HBox.margin>
                         <Insets left="5.0" right="5.0" />
@@ -59,7 +59,7 @@
 
     </center>
    <left>
-      <VBox prefHeight="650.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="649.0" prefWidth="159.0" BorderPane.alignment="CENTER">
          <children>
                 <Button fx:id="btnMain" mnemonicParsing="false" prefHeight="60.0" prefWidth="210.0" text="MAIN" VBox.vgrow="ALWAYS">
                <font>

@@ -17,7 +17,7 @@
             <children>
                 <Button fx:id="btnStart" mnemonicParsing="false" prefHeight="16.0" prefWidth="100.0" text="START" HBox.hgrow="ALWAYS">
                     <font>
-                        <Font name="System Bold" size="14.0" />
+                        <Font name="System Bold" size="13.0" />
                     </font>
                     <HBox.margin>
                         <Insets left="5.0" right="5.0" />
@@ -25,12 +25,12 @@
                 </Button>
                 <Button fx:id="btnStop" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="STOP" HBox.hgrow="ALWAYS">
                     <font>
-                        <Font name="System Bold" size="14.0" />
+                        <Font name="System Bold" size="13.0" />
                     </font>
                 </Button>
                 <Button fx:id="btnAddCommand" defaultButton="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" style="-fx-border-radius: 2;" text="ADD COMAND" HBox.hgrow="ALWAYS">
                     <font>
-                        <Font name="System Bold" size="14.0" />
+                        <Font name="System Bold" size="13.0" />
                     </font>
                     <HBox.margin>
                         <Insets left="5.0" right="5.0" />
@@ -38,37 +38,37 @@
                 </Button>
                 <Button fx:id="btnOpenDir" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="FILES" HBox.hgrow="ALWAYS">
                     <font>
-                        <Font name="System Bold" size="14.0" />
+                        <Font name="System Bold" size="13.0" />
                     </font>
                     <HBox.margin>
                         <Insets left="5.0" right="5.0" />
                     </HBox.margin>
                 </Button>
                 <HBox maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
-            <Button fx:id="btnAbout" mnemonicParsing="false" prefHeight="27.0" prefWidth="66.0" text="ABOUT" />
+            <Button fx:id="btnAbout" mnemonicParsing="false" prefHeight="28.0" prefWidth="79.0" text="ABOUT" />
                 <Button fx:id="btnMinimize" mnemonicParsing="false" onMouseClicked="#miniStage" prefHeight="27.0" prefWidth="46.0" text="− " HBox.hgrow="ALWAYS">
                     <font>
-                        <Font name="System Bold" size="14.0" />
+                        <Font size="12.0" />
                     </font>
                     <HBox.margin>
                         <Insets left="5.0" right="5.0" />
                     </HBox.margin>
                 </Button>
                 <Button fx:id="btnFull" mnemonicParsing="false" onMouseClicked="#fullStage" prefHeight="27.0" prefWidth="45.0" text="⃞" HBox.hgrow="ALWAYS">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font>
                     <HBox.margin>
                         <Insets left="5.0" right="5.0" />
                     </HBox.margin>
+               <font>
+                  <Font size="12.0" />
+               </font>
                 </Button>
                 <Button fx:id="bntClose" mnemonicParsing="false" onMouseClicked="#closeStage" prefHeight="27.0" prefWidth="30.0" text="X" HBox.hgrow="ALWAYS">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font>
                     <HBox.margin>
                         <Insets left="5.0" right="5.0" />
                     </HBox.margin>
+               <font>
+                  <Font size="12.0" />
+               </font>
                 </Button>
             </children>
             <BorderPane.margin>
@@ -162,7 +162,7 @@
         </HBox>
     </bottom>
     <center>
-        <VBox fx:id="loads" alignment="BOTTOM_CENTER" prefHeight="335.0" prefWidth="94.0" style="-fx-background-image: @../css/load.gif&quot;;" BorderPane.alignment="CENTER">
+        <VBox fx:id="loads" alignment="BOTTOM_CENTER" prefHeight="335.0" prefWidth="94.0" style="-fx-background-image: ../css/load.gif;" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets right="5.0" top="40.0" />
          </BorderPane.margin>

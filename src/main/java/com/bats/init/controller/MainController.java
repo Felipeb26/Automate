@@ -1,10 +1,7 @@
 package com.bats.init.controller;
 
-import com.bats.init.config.Configs;
-import com.bats.init.config.Exceptions;
-import com.bats.init.config.Format;
-import com.bats.init.service.Background;
-import com.bats.init.service.Console;
+import com.bats.init.config.*;
+import com.bats.init.service.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -48,8 +45,6 @@ public class MainController implements Initializable {
     private Thread th;
     @FXML
     private VBox loads;
-
-    private static int indexCommand = 0;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
