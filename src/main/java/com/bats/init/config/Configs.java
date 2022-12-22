@@ -28,6 +28,7 @@ import static java.util.Objects.nonNull;
 @Service
 public class Configs {
 
+    private static final String home = System.getProperty("user.home");
     private static final String path = System.getProperty("user.home");
 
     private final ExecuteOnTerminal execute = new ExecuteOnTerminal();
@@ -99,8 +100,7 @@ public class Configs {
                 stage = new Stage();
                 scene.setFill(Color.TRANSPARENT);
                 stage.initStyle(StageStyle.TRANSPARENT);
-                File br = new File(path + "/uimodel.css");
-                scene.getStylesheets().clear();
+                File br = new File(home + "/uimodel.css");
                 if (br.exists()) {
                     scene.getStylesheets().add("file:///" + br.getAbsolutePath().replace("\\", "/"));
                 } else {

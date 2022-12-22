@@ -76,8 +76,7 @@ public class StyleController implements Initializable {
                 borderColor = caseBorderIsNull(borderColor);
                 utils.writeFile(backColor, textColor, borderColor);
                 lblResponse.setText("Arquivo de estilo criado!");
-                Thread.sleep(1_500);
-                configs.changeScene(StyleController.class, "main", null, stage, stage.isFullScreen());
+//                configs.changeScene(StyleController.class, "main", null, stage, stage.isFullScreen());
             } catch (Exception e) {
                 Exceptions.ToText(e);
             }

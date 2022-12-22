@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import org.springframework.stereotype.Controller;
@@ -16,10 +17,18 @@ public class AboutController implements Initializable {
 
     @FXML
     private Label lblAbout;
+    @FXML
+    private VBox Image;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        setBackground();
         labelWrap();
+    }
+
+    private void setBackground() {
+        String url = AboutController.class.getResource("/image/all.png").toExternalForm();
+        Image.setStyle(String.format("-fx-background-image: url(%s)", url));
     }
 
     public void labelWrap() {

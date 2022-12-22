@@ -14,6 +14,11 @@ public class FilesUtils {
     private static final List<String> list = new ArrayList<>();
     private String line;
 
+    private static String backHover;
+    private static String textHover;
+    private static String borderHover;
+
+
     public List<String> readFile(Class<?> classe) {
         try {
             var index = classe.getResourceAsStream("/css/index.css");
@@ -40,9 +45,9 @@ public class FilesUtils {
     public void writeFile(String backColor, String textColor, String borderColor) {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(path + "/uimodel.css"));
-            String backHover = format.invertColors(backColor);
-            String textHover = format.invertColors(textColor);
-            String borderHover = format.invertColors(borderColor);
+            backHover = format.invertColors(backColor);
+            textHover = format.invertColors(textColor);
+            borderHover = format.invertColors(borderColor);
 
             writer.write("list-cell {-fx-text-fill: black;-fx-font-weight: bold;}\n\n");
             writer.write(".list-cell:filled:selected:focused,.list-cell:filled:selected " +

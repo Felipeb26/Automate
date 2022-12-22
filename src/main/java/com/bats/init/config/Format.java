@@ -88,7 +88,7 @@ public class Format {
         var green = color.getGreen();
         var alpha = color.getOpacity();
         return String.format("%s, %s,%s ,%s", (int) (red * 255), (int) (blue * 255),
-                (int) (green * 255), (int) (alpha * 255));
+                (int) (green * 255), (int) alpha);
     }
 
     public String invertColors(String colors) {
