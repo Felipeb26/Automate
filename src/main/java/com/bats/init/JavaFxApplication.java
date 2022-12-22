@@ -15,7 +15,11 @@ import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.GenericApplicationContext;
 
+import java.io.File;
+
 public class JavaFxApplication extends Application {
+
+    private static final String path = System.getProperty("user.home");
 
     private ConfigurableApplicationContext springContext;
     private static Parent root;
@@ -45,14 +49,20 @@ public class JavaFxApplication extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         var xml = JavaFxApplication.class.getResource("/fxml/main.fxml");
-        if(xml != null){
+        if (xml != null) {
             root = FXMLLoader.load(xml);
             scene = new Scene(root);
         }
 
         scene.setFill(Color.TRANSPARENT);
         stage.initStyle(StageStyle.TRANSPARENT);
-        scene.getStylesheets().add("css/index.css");
+        File br = new File(path + "/uimodel.css");
+        scene.getStylesheets().clear();
+        if (br.exists()) {
+            scene.getStylesheets().add("file:///" + br.getAbsolutePath().replace("\\", "/"));
+        } else {
+            scene.getStylesheets().add("css/index.css");
+        }
 
         var path = JavaFxApplication.class.getResourceAsStream("/image/icon.png");
         if (path != null) {

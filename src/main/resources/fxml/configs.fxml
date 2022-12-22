@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="700.0" prefWidth="851.0" style="-fx-border-color: black; -fx-border-width: 2;" stylesheets="@../css/index.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bats.init.controller.ConfigsController">
+<BorderPane prefHeight="700.0" prefWidth="851.0" style="-fx-border-color: black; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bats.init.controller.ConfigsController">
     <top>
         <HBox onMouseDragged="#onPaneDrag" onMousePressed="#onPanePressed">
             <children>

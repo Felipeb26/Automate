@@ -12,6 +12,6 @@ public class Exceptions {
     }
 
     public void ToText(Exception e) {
-        System.out.println(e.getMessage());
+        System.out.println(e.getMessage()+"\n\n\n");
     }
 }

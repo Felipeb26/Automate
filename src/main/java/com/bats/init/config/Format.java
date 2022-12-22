@@ -4,16 +4,18 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
-import org.springframework.stereotype.Component;
+import javafx.scene.paint.Color;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
 public class Format {
+    private static int alpha = 0;
 
     public List<String> toList(ListView<String> listPath) {
         return listPath.getItems().stream().distinct()
@@ -77,6 +79,47 @@ public class Format {
         var lbl = lblErro.getText();
         if (!lbl.isEmpty() || !lbl.isBlank()) {
             lblErro.setText("");
+        }
+    }
+
+    public String rgbFromColorPicker(Color color) {
+        var red = color.getRed();
+        var blue = color.getBlue();
+        var green = color.getGreen();
+        var alpha = color.getOpacity();
+        return String.format("%s, %s,%s ,%s", (int) (red * 255), (int) (blue * 255),
+                (int) (green * 255), (int) (alpha * 255));
+    }
+
+    public String invertColors(String colors) {
+        var value = colors.split(",");
+        var red = 255 - Integer.parseInt(value[0].trim());
+        var green = 255 - Integer.parseInt(value[1].trim());
+        var blue = 255 - Integer.parseInt(value[2].trim());
+        if (value.length >= 4) {
+            alpha = Integer.parseInt(value[3].trim());
+        } else {
+            alpha = 1;
+        }
+        red = limitRGB(red);
+        green = limitRGB(green);
+        blue = limitRGB(blue);
+
+        var color = Color.rgb(red, green, blue);
+
+        var b = color.getBlue();
+        var r = color.getRed();
+        var g = color.getGreen();
+        return String.format("%s,%s,%s,%s", (int) (r * 255), (int) (g * 255), (int) (b * 255), alpha);
+    }
+
+    private int limitRGB(int n) {
+        if (n > 255) {
+            return 255;
+        } else if (n < 0) {
+            return 0;
+        } else {
+            return n;
         }
     }
 }

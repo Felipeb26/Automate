@@ -56,6 +56,17 @@
   -fx-background-size: 100% 100%;
 }
 
-cor de fundo 
-cor do texto
-cor da borda
+
+#hbox{
+    -fx-border-color: white;
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-font-weight: bold;
+    -fx-underline: true;
+    -fx-border-width: 2;
+    -fx-background-radius: 10;
+    -fx-border-radius: 2;
+}
+
+#lblBack, #lblText, #lblBorder{
+    -fx-background-radius: 10;
+}

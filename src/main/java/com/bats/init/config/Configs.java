@@ -99,7 +99,13 @@ public class Configs {
                 stage = new Stage();
                 scene.setFill(Color.TRANSPARENT);
                 stage.initStyle(StageStyle.TRANSPARENT);
-                scene.getStylesheets().add("css/index.css");
+                File br = new File(path + "/uimodel.css");
+                scene.getStylesheets().clear();
+                if (br.exists()) {
+                    scene.getStylesheets().add("file:///" + br.getAbsolutePath().replace("\\", "/"));
+                } else {
+                    scene.getStylesheets().add("css/index.css");
+                }
 
                 var icon = classe.getResourceAsStream("/image/icon.png");
                 if (icon != null) {
