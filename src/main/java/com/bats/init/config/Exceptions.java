@@ -2,14 +2,12 @@ package com.bats.init.config;
 
 import lombok.experimental.UtilityClass;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.PrintStream;
+import java.io.*;
 
 @UtilityClass
 public class Exceptions {
 
-    private static final String path = System.getProperty("user.dir");
+    private static final String path = System.getProperty("user.home");
 
     public void ToText(Exception e, PrintStream ps) {
         e.printStackTrace(ps);
@@ -21,7 +19,8 @@ public class Exceptions {
             writer.write(String.format("Erro: %s\n\n\n", e.getMessage()));
             writer.flush();
             writer.close();
-            e.printStackTrace();
+            PrintWriter pw = new PrintWriter(path+"file.log");
+            e.printStackTrace(pw);
         } catch (Exception ex) {
             Exceptions.ToText(e);
         }
