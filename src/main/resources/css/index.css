@@ -48,6 +48,19 @@
   -fx-background-size: 100% 100%;
 }
 
+#toolbar{
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-border-color: rgba(12,12,12);
+    -fx-border-width: 3;
+}
+
+#configToolbar{
+    -fx-border-style: solid solid hidden hidden;
+    -fx-border-color: rgba(12,12,12);
+    -fx-border-radius: 10;
+    -fx-border-width: 3;
+}
+
 #Image {
   -fx-background-image: url('../image/all.png');
   -fx-background-size: contain;
@@ -57,7 +70,7 @@
 }
 
 
-#hbox{
+#hbox1,#hbox2,#hbox3{
     -fx-border-color: white;
     -fx-border-style: hidden hidden solid hidden;
     -fx-font-weight: bold;
@@ -69,4 +82,10 @@
 
 #lblBack, #lblText, #lblBorder{
     -fx-background-radius: 10;
+}
+
+.hyperlink,
+.hyperlink:visited {
+    -fx-text-fill: white;
+    -fx-underline: true;
 }

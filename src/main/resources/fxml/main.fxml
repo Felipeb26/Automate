@@ -13,7 +13,7 @@
 
 <BorderPane prefHeight="700.0" prefWidth="851.0" style="-fx-border-color: black; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bats.init.controller.MainController">
     <top>
-        <HBox onMouseDragged="#onPaneDrag" onMousePressed="#onPanePressed" stylesheets="@../css/index.css">
+        <HBox fx:id="toolbar" onMouseDragged="#onPaneDrag" onMousePressed="#onPanePressed">
             <children>
                 <Button fx:id="btnStart" mnemonicParsing="false" prefHeight="16.0" prefWidth="100.0" text="START" HBox.hgrow="ALWAYS">
                     <font>
@@ -45,10 +45,13 @@
                     </HBox.margin>
                 </Button>
                 <HBox maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
-            <Button fx:id="btnAbout" mnemonicParsing="false" prefHeight="28.0" prefWidth="79.0" text="ABOUT" />
+            <Button fx:id="btnAbout" mnemonicParsing="false" prefHeight="28.0" prefWidth="79.0" text="ABOUT" HBox.hgrow="ALWAYS">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Button>
                 <Button fx:id="btnMinimize" mnemonicParsing="false" onMouseClicked="#miniStage" prefHeight="27.0" prefWidth="46.0" text="− " HBox.hgrow="ALWAYS">
                     <font>
-                        <Font size="12.0" />
+                        <Font name="System Bold" size="13.0" />
                     </font>
                     <HBox.margin>
                         <Insets left="5.0" right="5.0" />
@@ -59,7 +62,7 @@
                         <Insets left="5.0" right="5.0" />
                     </HBox.margin>
                <font>
-                  <Font size="12.0" />
+                  <Font name="System Bold" size="13.0" />
                </font>
                 </Button>
                 <Button fx:id="bntClose" mnemonicParsing="false" onMouseClicked="#closeStage" prefHeight="27.0" prefWidth="30.0" text="X" HBox.hgrow="ALWAYS">
@@ -67,7 +70,7 @@
                         <Insets left="5.0" right="5.0" />
                     </HBox.margin>
                <font>
-                  <Font size="12.0" />
+                  <Font name="System Bold" size="13.0" />
                </font>
                 </Button>
             </children>
@@ -145,9 +148,9 @@
         </VBox>
     </right>
     <bottom>
-        <HBox prefHeight="250.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="250.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <children>
-                <TextArea fx:id="console" editable="false" prefHeight="153.0" prefWidth="500.0" wrapText="true" HBox.hgrow="ALWAYS">
+                <TextArea fx:id="console" editable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="153.0" prefWidth="500.0" wrapText="true" HBox.hgrow="ALWAYS">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>

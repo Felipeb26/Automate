@@ -13,11 +13,9 @@ public class FilesUtils {
     private static final String path = System.getProperty("user.home");
     private static final List<String> list = new ArrayList<>();
     private String line;
-
-    private static String backHover;
-    private static String textHover;
-    private static String borderHover;
-
+    private String backHover;
+    private String textHover;
+    private String borderHover;
 
     public List<String> readFile(Class<?> classe) {
         try {
@@ -58,6 +56,14 @@ public class FilesUtils {
 
             writer.write(String.format(".label {-fx-text-fill: rgba(%s);-fx-font-weight: bold;}\n\n", textColor));
 
+            writer.write(String.format("#toolbar{-fx-border-style: hidden hidden solid hidden;-fx-border-color: rgba(%s);" +
+                    "-fx-border-width: 3;}", borderColor));
+
+            writer.write(String.format(".hyperlink,.hyperlink:visited {-fx-text-fill: rgba(%s);-fx-underline: true;}", textColor));
+
+            writer.write(String.format("#configToolbar{-fx-border-style: solid solid hidden hidden;-fx-border-color: rgba(%s);" +
+                    "-fx-border-radius: 10;-fx-border-width: 3;}", borderColor));
+
             writer.write(String.format(".button {-fx-background-color: rgba(%s);-fx-text-fill: rgba(%s);-fx-border-color: rgba(%s);" +
                             "-fx-font-weight: bold;-fx-underline: true;-fx-border-width: 2;-fx-background-radius: 10;-fx-border-radius: 2;}\n\n",
                     backColor, textColor, borderColor));
@@ -71,7 +77,7 @@ public class FilesUtils {
             writer.write("#Image {-fx-background-image: url('../image/all.png');-fx-background-size: contain;" +
                     "-fx-background-repeat: no-repeat;-fx-background-position: center;-fx-background-size: 100% 100%;}\n\n");
 
-            writer.write(String.format("#hbox{-fx-border-color: rgba(%s);-fx-border-style: hidden hidden solid hidden;-fx-font-weight: bold;" +
+            writer.write(String.format("#hbox1,#hbox2,#hbox3{-fx-border-color: rgba(%s);-fx-border-style: hidden hidden solid hidden;-fx-font-weight: bold;" +
                     "-fx-underline: true;-fx-border-width: 2;-fx-background-radius: 10;-fx-border-radius: 2;}\n\n", borderColor));
 
             writer.write("#lblBack, #lblText, #lblBorder{-fx-background-radius: 10;}\n\n");

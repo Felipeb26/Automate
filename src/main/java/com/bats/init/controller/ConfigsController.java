@@ -33,13 +33,14 @@ public class ConfigsController implements Initializable {
     @FXML
     private Stage stage;
     @FXML
-    private Button btnMain, abouts, btnStyle;
+    private Button btnMain, abouts, btnStyle, btnShare;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         toMain();
         styleButton();
         set();
+        shareBtn();
     }
 
     private void toMain() {
@@ -50,7 +51,6 @@ public class ConfigsController implements Initializable {
     }
 
     public void styleButton() {
-
         btnStyle.setOnAction(event -> {
             try {
                 var url = ConfigsController.class.getResource("/fxml/style.fxml");
@@ -59,18 +59,26 @@ public class ConfigsController implements Initializable {
                     stackPane.getChildren().removeAll();
                     stackPane.getChildren().setAll(root);
                 }
-//            utils = new FilesUtils();
-//            var list = utils.readFile(ConfigsController.class);
-//            list.stream().forEach(it -> {
-//                System.out.println(it);
-//            });
             } catch (Exception e) {
                 Exceptions.ToText(e);
             }
         });
-
     }
 
+    public void shareBtn(){
+        btnShare.setOnAction(event ->{
+            try {
+                var url = ConfigsController.class.getResource("/fxml/share.fxml");
+                if (url != null) {
+                    Parent root = FXMLLoader.load(url);
+                    stackPane.getChildren().removeAll();
+                    stackPane.getChildren().setAll(root);
+                }
+            } catch (Exception e) {
+                Exceptions.ToText(e);
+            }
+        });
+    }
     @FXML
     public void onPanePressed(MouseEvent me) {
         stage = (Stage) ((Node) me.getSource()).getScene().getWindow();

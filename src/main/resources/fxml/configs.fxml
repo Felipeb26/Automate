@@ -10,31 +10,31 @@
 
 <BorderPane prefHeight="700.0" prefWidth="851.0" style="-fx-border-color: black; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bats.init.controller.ConfigsController">
     <top>
-        <HBox onMouseDragged="#onPaneDrag" onMousePressed="#onPanePressed">
+        <HBox fx:id="toolbar" onMouseDragged="#onPaneDrag" onMousePressed="#onPanePressed" prefHeight="49.0" prefWidth="847.0">
             <children>
                 <HBox maxWidth="1.7976931348623157E308" prefHeight="31.0" prefWidth="676.0" HBox.hgrow="ALWAYS" />
                 <Button fx:id="btnMinimize" mnemonicParsing="false" onMouseClicked="#miniStage" prefHeight="16.0" prefWidth="45.0" text="− " HBox.hgrow="ALWAYS">
                     <font>
-                        <Font size="12.0" />
+                        <Font name="System Bold" size="13.0" />
                     </font>
                     <HBox.margin>
-                        <Insets left="5.0" right="5.0" />
+                        <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
                     </HBox.margin>
                 </Button>
                 <Button fx:id="btnFull" mnemonicParsing="false" onMouseClicked="#fullStage" prefHeight="16.0" prefWidth="45.0" text="⃞" HBox.hgrow="ALWAYS">
                     <font>
-                        <Font size="12.0" />
+                        <Font name="System Bold" size="13.0" />
                     </font>
                     <HBox.margin>
-                        <Insets left="5.0" right="5.0" />
+                        <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
                     </HBox.margin>
                 </Button>
                 <Button fx:id="bntClose" mnemonicParsing="false" onMouseClicked="#closeStage" prefHeight="16.0" prefWidth="45.0" text="X" HBox.hgrow="ALWAYS">
                     <font>
-                        <Font size="12.0" />
+                        <Font name="System Bold" size="13.0" />
                     </font>
                     <HBox.margin>
-                        <Insets left="5.0" right="5.0" />
+                        <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
                     </HBox.margin>
                 </Button>
             </children>
@@ -59,7 +59,7 @@
 
     </center>
     <left>
-        <VBox prefHeight="649.0" prefWidth="159.0" BorderPane.alignment="CENTER">
+        <VBox fx:id="configToolbar" prefHeight="649.0" prefWidth="159.0" BorderPane.alignment="CENTER">
             <children>
                 <Button fx:id="btnMain" mnemonicParsing="false" prefHeight="60.0" prefWidth="210.0" text="MAIN" VBox.vgrow="ALWAYS">
                     <font>
@@ -74,7 +74,7 @@
                         <Insets left="20.0" right="20.0" top="20.0" />
                     </VBox.margin>
                     <font>
-                        <Font size="20.0" />
+                        <Font name="System Bold" size="20.0" />
                     </font>
                 </Button>
                 <Button fx:id="btnStyle" mnemonicParsing="false" prefHeight="62.0" prefWidth="201.0" text="STYLE" VBox.vgrow="ALWAYS">
@@ -85,10 +85,13 @@
                         <Font name="System Bold" size="20.0" />
                     </font>
                 </Button>
-                <Button disable="true" mnemonicParsing="false" prefHeight="62.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                <Button fx:id="btnShare" mnemonicParsing="false" prefHeight="62.0" prefWidth="200.0" text="SHARE" VBox.vgrow="ALWAYS">
                     <VBox.margin>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                     </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
                 </Button>
                 <Button disable="true" mnemonicParsing="false" prefHeight="62.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                     <VBox.margin>

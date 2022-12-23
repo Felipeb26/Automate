@@ -17,11 +17,11 @@ public class Exceptions {
 
     public void ToText(Exception e) {
         try {
-            System.out.println(e.getMessage() + "\n\n\n");
-            BufferedWriter writer = new BufferedWriter(new FileWriter(path + "/uimodel.css"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(path + "/automate.log"));
             writer.write(String.format("Erro: %s\n\n\n", e.getMessage()));
             writer.flush();
             writer.close();
+            e.printStackTrace();
         } catch (Exception ex) {
             Exceptions.ToText(e);
         }

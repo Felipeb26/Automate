@@ -9,16 +9,23 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import static java.util.Objects.nonNull;
 
 @Component
 public class StyleController implements Initializable {
@@ -36,21 +43,21 @@ public class StyleController implements Initializable {
     private Label lblResponse;
     @FXML
     private Stage stage;
-
+    @FXML
+    private HBox hbox1, hbox3;
     private static String backColor, textColor, borderColor;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         salvarArquivo();
         toDeafultStyle();
-        btnSalvar.setText("SALVAR ESTILO");
-        btnDeafult.setText("ESTILO");
     }
 
     @FXML
     public void changeColor(ActionEvent event) {
         var color = colorBack.getValue();
         backColor = format.rgbFromColorPicker(color);
+        hbox1.setBackground(new Background(new BackgroundFill(color, null, null)));
         lblBack.setBackground(new Background(new BackgroundFill(color, null, null)));
     }
 
@@ -58,25 +65,26 @@ public class StyleController implements Initializable {
     public void changeColorText(ActionEvent event) {
         var color = colorText.getValue();
         textColor = format.rgbFromColorPicker(color);
-        lblText.setBackground(new Background(new BackgroundFill(color, null, null)));
+        lblText.setTextFill(color);
     }
 
     @FXML
     public void changeColorBorder(ActionEvent event) {
         var color = colorBorder.getValue();
         borderColor = format.rgbFromColorPicker(color);
+        hbox3.setStyle(String.format("-fx-border-color: rgba(%s);", borderColor));
         lblBorder.setBackground(new Background(new BackgroundFill(color, null, null)));
     }
 
     private void salvarArquivo() {
         btnSalvar.setOnMouseClicked(event -> {
             try {
-                backColor = caseBackIsNull(backColor);
-                textColor = caseTextIsNull(textColor);
-                borderColor = caseBorderIsNull(borderColor);
+
+                backColor = nonNull(backColor) ? backColor : "0, 0, 0, 0.3";
+                textColor = nonNull(textColor) ? textColor : "240, 240, 240";
+                borderColor = nonNull(borderColor) ? borderColor : "255, 255, 255";
                 utils.writeFile(backColor, textColor, borderColor);
                 lblResponse.setText("Arquivo de estilo criado!");
-//                configs.changeScene(StyleController.class, "main", null, stage, stage.isFullScreen());
             } catch (Exception e) {
                 Exceptions.ToText(e);
             }
@@ -101,27 +109,4 @@ public class StyleController implements Initializable {
         });
     }
 
-    public String caseBackIsNull(String s) {
-        if (s.isBlank() || s.isEmpty()) {
-            return "12,12,12,0.3";
-        } else {
-            return s;
-        }
-    }
-
-    public String caseBorderIsNull(String s) {
-        if (s.isBlank() || s.isEmpty()) {
-            return "255,255,255";
-        } else {
-            return s;
-        }
-    }
-
-    public String caseTextIsNull(String s) {
-        if (s.isBlank() || s.isEmpty()) {
-            return "12,12,12";
-        } else {
-            return s;
-        }
-    }
 }

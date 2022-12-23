@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class Format {
-    private static int alpha = 0;
+    private static double alpha = 0;
 
     public List<String> toList(ListView<String> listPath) {
         return listPath.getItems().stream().distinct()
@@ -97,7 +97,7 @@ public class Format {
         var green = 255 - Integer.parseInt(value[1].trim());
         var blue = 255 - Integer.parseInt(value[2].trim());
         if (value.length >= 4) {
-            alpha = Integer.parseInt(value[3].trim());
+            alpha = Double.parseDouble(value[3].trim());
         } else {
             alpha = 1;
         }
