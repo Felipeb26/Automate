@@ -36,9 +36,10 @@ public class AboutController implements Initializable {
         lblAbout.setTextAlignment(TextAlignment.JUSTIFY);
         lblAbout.setTranslateX(25);
         lblAbout.setTranslateY(25);
-        lblAbout.setFont(Font.font(14));
+        lblAbout.setFont(Font.font(12));
 
         lblAbout.setPrefWidth(250);
+        lblAbout.setPrefHeight(500);
         lblAbout.setPadding(new Insets(0, 20, 0, 0));
         lblAbout.setText("\tPara iniciar o projeto é necessario, escolher em quais pastas será executado os comandos, " +
                 "após sua descisão digite no input 'digite o comando' e aperte ENTER ou no botão 'add command', " +
@@ -47,9 +48,13 @@ public class AboutController implements Initializable {
                 "\tPara impedir que uma pasta receba o comando basta clicar na lista onde contém seu nome ou onde" +
                 " contém o caminho da pasta.\n\n" +
                 "\tPara alterar o comando na lista basta clicar duas vezes no comando dentro da 'lista de comandos' e " +
-                "depois da sua alteração apenas clique em qualquer outro lugar na tela." +
+                "depois da sua alteração apenas clique em qualquer outro lugar na tela.\n\n" +
+                "\tCaso não queira usar o estilo do sistema clique em about e depois styles selecione o botão de cor de fundo" +
+                ", a cor do texto e a cor da borda.\n\n" +
+                "\tPara entrar em contato com por meio do linkedin, github ou email basta clicar nos links.\tcaso queira baixar" +
+                " ou ajudar alguem a baixar o automate basta escanear o qrcode!\n\n" +
                 "\tObs: features estão sendo lançadas constantemente recomendado sempre ficar alerta sobre atuallizações\n" +
-                "obrigado BatsWorks!");
+                "obrigado BatsWorks!\n\n");
     }
 
 }

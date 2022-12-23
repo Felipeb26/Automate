@@ -10,8 +10,8 @@
   <priority>normal</priority>
   <downloadUrl></downloadUrl>
   <supportUrl></supportUrl>
-  <stayAlive>false</stayAlive>
-  <restartOnCrash>false</restartOnCrash>
+  <stayAlive>true</stayAlive>
+  <restartOnCrash>true</restartOnCrash>
   <manifest></manifest>
   <icon>C:\Users\felipe.silva\ROBOS\Automate\src\main\resources\image\icon.ico</icon>
   <jre>
