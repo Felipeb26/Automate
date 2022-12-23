@@ -10,9 +10,6 @@ import java.util.List;
 
 @Service
 public class ExecuteOnTerminal {
-//    C:/Users/felipe.silva/AppData/Local/Programs/Git/bin/bash.exe -i -l
-
-    //    private static final String path = System.getProperty("user.home");
     private static String os = System.getProperty("os.name");
 
     public List<String> execs(String command, String path, PrintStream ps) {
@@ -47,6 +44,7 @@ public class ExecuteOnTerminal {
             return strings;
         } catch (Exception e) {
             Exceptions.ToText(e, ps);
+            Exceptions.ToText(e);
             return null;
         }
     }
@@ -65,6 +63,7 @@ public class ExecuteOnTerminal {
             return strings;
         } catch (Exception e) {
             Exceptions.ToText(e, ps);
+            Exceptions.ToText(e);
             return null;
         }
     }
