@@ -34,6 +34,8 @@ public class ExecuteOnTerminal {
             BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
             BufferedReader br = new BufferedReader(new InputStreamReader(p.getErrorStream()));
 
+            System.out.println(p.getOutputStream());
+
             while ((lines = reader.readLine()) != null) {
                 strings.add(lines);
             }

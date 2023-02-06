@@ -19,7 +19,7 @@ public class Exceptions {
             writer.write(String.format("Erro: %s\n\n\n", e.getMessage()));
             writer.flush();
             writer.close();
-            PrintWriter pw = new PrintWriter(path+"/file.log");
+            PrintWriter pw = new PrintWriter(path+"/stackfile.log");
             e.printStackTrace(pw);
         } catch (Exception ex) {
             Exceptions.ToText(e);

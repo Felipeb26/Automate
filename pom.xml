@@ -80,6 +80,13 @@
             <artifactId>javase</artifactId>
             <version>3.4.1</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.metreeca/tray -->
+        <dependency>
+            <groupId>com.metreeca</groupId>
+            <artifactId>tray</artifactId>
+            <version>0.51.0</version>
+        </dependency>
+
     </dependencies>
 
     <repositories>
@@ -102,6 +109,14 @@
                         </exclude>
                     </excludes>
                     <mainClass>com.bats.init.BatsSpringApplication</mainClass>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>14</source>
+                    <target>14</target>
                 </configuration>
             </plugin>
         </plugins>

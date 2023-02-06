@@ -48,6 +48,8 @@ public class Background extends Task<String> {
                 }
                 values = String.format("Finalizano comando: %s\t na Pasta: %s\n\n", exec, pathName);
                 updateMessage(values);
+                values = "\n---------------------------------------------------------------------------\n\n\n";
+                updateMessage(values);
             }
         }
         values = finite;
