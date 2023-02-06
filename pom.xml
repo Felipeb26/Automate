@@ -94,6 +94,7 @@
             <url>https://jitpack.io</url>
         </repository>
     </repositories>
+
     <build>
         <plugins>
             <plugin>
@@ -109,6 +110,11 @@
                     </excludes>
                     <mainClass>com.bats.init.BatsSpringApplication</mainClass>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <version>3.0.5</version>
             </plugin>
         </plugins>
     </build>
